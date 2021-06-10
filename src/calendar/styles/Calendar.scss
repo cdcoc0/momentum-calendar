@@ -1,0 +1,54 @@
+.Calendar {
+    width: 100%;
+    font-family: "Lucida Console", Helvetica, sans-serif;
+    //padding-left: 3rem;
+    //min-height: 100vh;
+    //height: 100%;
+    //padding: 1rem;
+    .navSpace {
+        display: flex;
+        .nav {
+            //background: blueviolet;
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 4rem;
+            margin-right: 1rem;
+        }
+        .body {
+            margin-top: 1.75rem;
+            margin-right: 8rem;
+            margin-left: 7rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            flex: 1;
+            background: white;
+            border: 1px solid white;
+            border-radius: 12px;
+            // background: linear-gradient(
+            // to right,
+            // rgba(255, 255, 255, 0.9) 40%,
+            // rgba(255, 255, 255, 0.8) 60%,
+            // rgba(255, 255, 255, 0.9)
+            // );
+            .daysArray {
+                display: flex;
+                margin-top: 1rem;
+                padding-bottom: 0.5rem;
+                font-size: 1.25rem;
+                font-weight: bold;
+                color: #c890ff;
+                //border-bottom: 3px solid white;
+                .days {
+                    width: calc(100% / 7);
+                    &:nth-child(7n + 1) {
+                        color: #f17070;
+                    }
+                    &:nth-child(7n) {
+                        color: #6c97f5;
+                    }
+                }
+            }
+        }   
+    }
+}

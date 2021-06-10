@@ -1,0 +1,21 @@
+.ModalItem {
+    display: flex;
+    margin: 0 2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    .content {
+        flex: 1;
+        .checkIcon {
+            margin-right: 0.5rem;
+            color: #c890ff;
+        }
+    }
+    .remove {
+        font-size: 1.5rem;
+        color: #ff6b6b;
+        cursor: pointer;
+    }
+    & + & {
+        border-top: 1px solid rgb(197, 197, 197);
+    }
+}

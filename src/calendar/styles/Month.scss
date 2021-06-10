@@ -1,0 +1,26 @@
+.Header {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    margin-right: 5rem;
+    font-family:  sans-serif;
+    font-weight: bold;
+    font-size: 2rem;
+    justify-content: space-evenly;
+    //color: #7624c9;
+    color: #52198b;
+    .month {
+        width: 300px;
+        display: flex;
+        justify-content: center;
+    }
+    svg {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        &:hover {
+            color: #6b2fa8;
+            //box-shadow: 1px 1px 10px rgb(228, 228, 228);
+        }
+    }  
+}

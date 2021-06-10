@@ -1,0 +1,42 @@
+.Dates {
+    //background-color: darkcyan;
+    font-family: "Lucida Console", Helvetica, sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+    height: 512px;
+    .dateBlock {
+        width: calc(100% / 7);
+        color: #8000ff;
+        //color: #AA68A6;
+        font-size: 1.25rem;
+        font-weight: bold;
+        //border-bottom: 1px solid white;
+        //border-right: 1px solid white;
+        &:nth-child(7n + 1) {
+            color: #D13E3E;
+        }
+        &:nth-child(7n) {
+            color: #396EE2;
+        }
+        .other {
+            opacity: 0.3;
+        }
+        .this {
+            cursor: pointer;
+            padding-left: 0.25rem;
+            padding-top: 0.25rem;
+            height: 90px;
+            //background-color: green;
+            &.today {
+                //background-color: #c890ff1f;
+                //background-color: #ffe83c;
+                box-sizing: border-box;
+                border: 1px solid #c890ff8a;
+            }
+            .todo {
+                background-color: pink;
+            }
+        }
+    }
+}
