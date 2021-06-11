@@ -25,7 +25,7 @@ const UserTodo = styled.div`
 
 const Momentum = () => {
     return (
-        <Home>
+        <Home className="page">
             <UserTodo>
                 <User />
                 <TodoTemplate />

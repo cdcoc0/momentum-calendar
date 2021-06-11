@@ -20,7 +20,7 @@ const Calendar = () => {
     };
 
     return (
-        <div className="Calendar">
+        <div className="Calendar page">
             <Background />
             <MonthContainer />
             <div className="navSpace">
