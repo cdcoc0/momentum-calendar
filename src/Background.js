@@ -18,8 +18,8 @@ const BackContainer = styled.img`
     height: 100%;
     background: linear-gradient(
         to right,
-        rgba(20, 20, 20, 0.1) 10%,
-        rgba(20, 20, 20, 0.7) 60%,
+        rgba(20, 20, 20, 0.2) 10%,
+        rgba(20, 20, 20, 0.7) 70%,
         rgba(20, 20, 20, 0.8)
     ),
     url("https://source.unsplash.com/1600x900/?travel");

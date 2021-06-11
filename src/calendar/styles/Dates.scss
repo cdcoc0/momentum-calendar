@@ -1,14 +1,14 @@
 .Dates {
-    //background-color: darkcyan;
-    font-family: "Lucida Console", Helvetica, sans-serif;
+    font-family: sans-serif;
+    //"Lucida Console", Helvetica, 
     display: flex;
     flex-wrap: wrap;
     margin-top: 1.5rem;
     height: 512px;
     .dateBlock {
         width: calc(100% / 7);
-        color: #8000ff;
-        //color: #AA68A6;
+        //color: #8000ff;
+        color: white;
         font-size: 1.25rem;
         font-weight: bold;
         //border-bottom: 1px solid white;
@@ -27,12 +27,12 @@
             padding-left: 0.25rem;
             padding-top: 0.25rem;
             height: 90px;
-            //background-color: green;
             &.today {
-                //background-color: #c890ff1f;
-                //background-color: #ffe83c;
+                //background-color: #c890ff60;
                 box-sizing: border-box;
-                border: 1px solid #c890ff8a;
+                //border: 2px solid #c890ff8a;
+                border: 2px solid white;
+                border-radius: 6px
             }
             .todo {
                 background-color: pink;
