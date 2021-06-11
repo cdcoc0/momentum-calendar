@@ -3,8 +3,12 @@
     height: 100%;
     display: flex;
     position: absolute;
+    overflow: auto;
     .user-todo-container {
         flex: 1;
+    }
+    .clock-weather-container {
+        margin-right: 1rem;
     }
     .nav-container {
         font-size: 4rem;

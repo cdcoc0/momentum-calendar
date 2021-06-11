@@ -1,0 +1,69 @@
+.User {
+    width: 950px;
+    padding: 1rem;
+    margin-top: 5rem;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    font-family: "Lucida Console", Helvetica, sans-serif;
+    font-size: 1.25rem;
+    .user-form {
+        display: flex;
+        justify-content: center;
+        margin-top: 7rem;
+        .user-input {
+            background: none;
+            outline: none;
+            border: none;
+            //width: 250px;
+            padding: 0.25rem;
+            padding-left: 0.75rem;
+            font-size: 1.5rem;
+            color: white;
+            //background: #e2e2e2;
+             border-bottom: 3px solid #e2e2e2;
+            &::placeholder {
+                color: #e2e2e2;
+            }
+        }
+        .user-btn {
+            background: none;
+            outline: none;
+            border: none;
+            display: flex;
+                svg {
+                background: none;
+                outline: none;
+                border: none;
+                border: 3px solid #c890ff;
+                font-size: 1.5rem;
+                color: #c890ff;
+                padding: 0.25rem;
+                margin-left: 1.5rem;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: 0.1s background ease-in;
+                    &:hover {
+                        background: #f0e1ff8a;
+                        color: #be80fc;
+                    }
+                }
+        }
+    }
+    .user-greeting {
+        .welcome {
+            width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 2.75rem;
+            margin-bottom: 1rem;
+        }
+        .name {
+            font-size: 5rem;
+            display: flex;
+            justify-content: center;
+            font-family: verdana, sans-serif;
+            font-weight: bold;
+        }
+    }
+}
