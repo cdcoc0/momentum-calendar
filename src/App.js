@@ -6,8 +6,10 @@ import Transition from './Transition';
 const App = () => {
   return (
     <Router>
-      <Background />
-      <Transition />
+      <div style={{height: "100%"}}>
+        <Background />
+        <Transition />
+      </div>
     </Router>
   );
 }

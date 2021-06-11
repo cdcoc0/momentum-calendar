@@ -10,7 +10,8 @@ const Transition = () => {
 
   return (
       <TransitionGroup className="Transition-group">
-        <CSSTransition key={location.pathname} className="slide" timeout={{enter: 800, exit: 400}}>
+        <CSSTransition key={location.pathname} classNames="slide" timeout={{enter: 1000, exit: 1000}}>
+        {/* mountOnEnter={true} unmountOnExit={true} */}
             <Switch location={location}>
                 <Route path="/" exact><Momentum /></Route>
                 <Route path="/calendar" exact><Calendar /></Route>
