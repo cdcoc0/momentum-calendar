@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-//import {TodayProvider} from '../contexts/today';
+import {Link} from 'react-router-dom';
 import Background from './Background';
 import MonthContainer from '../containers/MonthContainer';
 import DatesContainer from '../containers/DatesContainer';
@@ -25,7 +25,7 @@ const Calendar = () => {
             <MonthContainer />
             <div className="navSpace">
                 <div className="nav">
-                    {/* <MdNavigateBefore /> */}
+                    <Link to="/"><MdNavigateBefore /></Link>
                 </div>
                 <div className="body">
                     <div className="daysArray">

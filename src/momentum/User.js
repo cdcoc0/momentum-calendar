@@ -6,8 +6,11 @@ const UserForm = styled.form`
     //background-color: black;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    //align-items: flex-end;
     margin-top: 7rem;
+    width: 512px;
+    margin-right: auto;
+    margin-left: auto;
     input {
         //flex: 1;
         background: none;
@@ -52,14 +55,12 @@ const UserForm = styled.form`
 
 const UserDiv = styled.div`
     //flex: 1;
-    //background: black;
     width: 930px;
     padding: 1rem;
     margin-top: 5rem;
     margin-left: auto;
     margin-right: 0;
     color: white;
-    //margin-right: 7rem;
     font-family: "Lucida Console", Helvetica, sans-serif;
     font-size: 1.3rem;
     //font-weight: bold;
