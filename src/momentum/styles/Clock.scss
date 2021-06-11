@@ -1,0 +1,22 @@
+.Clock {
+    .momentum-datecontainer {
+        display: flex;
+        flex-direction: row-reverse;
+        font-family: "Lucida Console", Helvetica, sans-serif;
+        color: white;
+        font-size: 1.25rem;;
+        margin-top: 3rem;
+    }
+    .momentum-clockcontainer {
+        //background: black;
+        //height: 120px;
+        display: flex;
+        flex-direction: row-reverse;
+        font-family: sans-serif;
+        font-size: 4rem;
+        font-weight: bold;
+        color: white;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+}

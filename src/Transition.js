@@ -3,6 +3,7 @@ import {Route, Switch, useLocation} from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Momentum from './momentum/Momentum';
 import Calendar from './calendar/Calendar';
+import './Transition.scss';
 
 const Transition = () => {
     const location = useLocation();

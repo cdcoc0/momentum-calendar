@@ -1,28 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import dayjs from 'dayjs';
-import styled from 'styled-components';
-
-const DateContainer = styled.div`
-    display: flex;
-    flex-direction: row-reverse;
-    font-family: "Lucida Console", Helvetica, sans-serif;
-    color: white;
-    font-size: 1.25rem;;
-    margin-top: 3rem;
-`
-
-const ClockContainer = styled.div`
-    //background: black;
-    //height: 120px;
-    display: flex;
-    flex-direction: row-reverse;
-    font-family: sans-serif;
-    font-size: 4rem;
-    font-weight: bold;
-    color: white;
-    align-items: center;
-    margin-bottom: 1.5rem;
-`
+import './styles/Clock.scss'
 
 const Clock = () => {
     const [time, setTime] = useState({
@@ -48,11 +26,11 @@ const Clock = () => {
     const minutes = time.date.getMinutes();
 
     return (
-        <div>
-            <DateContainer>{`${month} ${date} (${day})`}</DateContainer>
-            <ClockContainer>
+        <div className="Clock">
+            <div className="momentum-datecontainer">{`${month} ${date} (${day})`}</div>
+            <div className="momentum-clockcontainer">
                 {`${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}`}
-            </ClockContainer>
+            </div>
         </div>
     )
 }

@@ -1,0 +1,12 @@
+.Weather {
+    color: white;
+    font-family: "Lucida Console", Helvetica, sans-serif;
+    .location {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+    .desc {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+}

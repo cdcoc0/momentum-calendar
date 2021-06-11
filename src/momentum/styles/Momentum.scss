@@ -1,0 +1,16 @@
+.Momentum {
+    display: flex;
+    .user-todo-container {
+        flex: 1;
+    }
+    .nav-container {
+        font-size: 4rem;
+        display: flex;
+        align-items: center;
+        margin-right: 1rem;
+        margin-left: 1rem;
+        svg {
+            color: white;
+        }
+    }
+}
