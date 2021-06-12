@@ -14,9 +14,6 @@ const ListContainer = styled.div`
 //     const nweetIbj = {...document.data(), id: document.id}
 //      setNweets((prev) => [document.data(), ...prev]});
 
-
-//{id: doc.id, ...doc.data() }
-
 const TodoList = ({todos, onRemove, onToggle}) => {
     const [load, setLoad] = useState([]);
     useEffect(() => {
@@ -31,7 +28,6 @@ const TodoList = ({todos, onRemove, onToggle}) => {
     return(
         <ListContainer>
             {load.map(todo => <TodoItem key={todo.id} todo={todo} onRemove={onRemove} onToggle={onToggle}/>)}
-            {/* {todos && todos.map(todo => <TodoItem key={todo.id} todo={todo} onRemove={onRemove} onToggle={onToggle}/>)} */}
         </ListContainer>
     );
 };

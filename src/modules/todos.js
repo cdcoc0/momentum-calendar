@@ -10,10 +10,9 @@ export const changeTodoInput = input => ({
     input
 });
 
-export const insertTodo = (nextId, text, year, month, date) => ({
+export const insertTodo = (text, year, month, date) => ({
     type: INSERT_TODO,
     todo: {
-        id: nextId,
         text,
         done: false,
         dates: {
@@ -21,7 +20,7 @@ export const insertTodo = (nextId, text, year, month, date) => ({
             month,
             date
         },
-        createdAt: Date().now()
+        //createdAt:
     }
 });
 
@@ -34,6 +33,7 @@ export const removeTodo = id => ({
     type: REMOVE_TODO,
     id
 });
+
 const todoLS = localStorage.getItem('TODO');
 
 const Post = async (todo) => {
@@ -41,6 +41,10 @@ const Post = async (todo) => {
         todo
     });
 };
+
+const Delete = async (id) => {
+    await dbService.doc(`kirri/${id}`).delete();
+}
 
 const initialState = {
     input: '',
@@ -56,7 +60,6 @@ function todos(state = initialState, action) {
             }
         case INSERT_TODO:
             const insert = state.todos.concat(action.todo);
-            localStorage.setItem("TODO", JSON.stringify(insert));
             Post(action.todo);
             return {
                 ...state,
@@ -71,7 +74,7 @@ function todos(state = initialState, action) {
             };
         case REMOVE_TODO:
             const filter = state.todos.filter(todo => todo.id !== action.id)
-            localStorage.setItem("TODO", filter ? JSON.stringify(filter) : null);
+            Delete(action.id);
             return {
                 ...state,
                 todos: filter

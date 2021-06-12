@@ -6,15 +6,16 @@ import { dbService } from '../fbconfig';
 
 const TodoTemplate = ({input, todos, onChangeInput, insertTodo, toggleTodo, removeTodo,
                         year, month, date}) => {
-    const todoLS = localStorage.getItem('TODO');
 
     const onInsert = useCallback(() => {
-        let nextId = todoLS ? JSON.parse(todoLS).length + 1 : 1;
-        insertTodo(nextId, input, year, month, date);
-    }, [todoLS, input, year, month, date, insertTodo]);
+        insertTodo(input, year, month, date);
+    }, [input, year, month, date, insertTodo]);
 
     const onRemove = useCallback(id => {
-        removeTodo(id);
+        const ok = window.confirm('Delete?');
+        if (ok) {
+            removeTodo(id);
+        }
     }, [removeTodo]);
 
     const onToggle = useCallback(id => {
