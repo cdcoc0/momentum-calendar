@@ -22,19 +22,19 @@
             flex: 1;
             //background: #d5abffef;
             //background-color: #e2e2e29f;
-            //background-color: rgba(255, 255, 255, 0.9);
-            border-top: 1px solid rgba(255, 255, 255, 0.945);
+            background-color: rgba(255, 255, 255, 0.9);
+            //border-top: 1px solid rgba(255, 255, 255, 0.945);
             //border-top: 1px solid #c890ffef;
             //border: 1px solid #c890ff;
-            //border-radius: 12px;
+            border-radius: 12px;
             .daysArray {
                 display: flex;
                 margin-top: 1rem;
                 padding-bottom: 0.5rem;
                 font-size: 1.25rem;
                 font-weight: bold;
-                //color: #c890ff;
-                color: white;
+                color: #c890ff;
+                //color: white;
                 .days {
                     width: calc(100% / 7);
                     &:nth-child(7n + 1) {

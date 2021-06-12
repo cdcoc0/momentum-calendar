@@ -4,6 +4,9 @@
     display: flex;
     position: absolute;
     overflow-x: auto;
+    .invisible-space {
+        width: 150px;
+    }
     .clock-weather-container {
         margin-right: 1rem;
     }

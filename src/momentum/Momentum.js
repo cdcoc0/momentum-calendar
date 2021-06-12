@@ -11,6 +11,8 @@ import './styles/Momentum.scss';
 const Momentum = () => {
     return (
         <div className="Momentum page">
+            <div className="invisible-space">
+            </div>
             <div className="user-todo-container">
                 <User />
                 <TodoTemplate />

@@ -9,7 +9,8 @@
     .dateBlock {
         width: calc(100% / 7);
         //color: #8000ff;
-        color: white;
+        //color: white;
+        color: #b162ff;
         font-size: 1.25rem;
         font-weight: bold;
         //border-bottom: 1px solid white;
@@ -31,8 +32,8 @@
             &.today {
                 //background-color: #c890ff60;
                 box-sizing: border-box;
-                //border: 2px solid #c890ffd5;
-                border: 2px solid white;
+                border: 2px solid #c890ffd5;
+                //border: 2px solid white;
                 border-radius: 6px
             }
             .todo {
