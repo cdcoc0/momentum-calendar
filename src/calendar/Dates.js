@@ -46,7 +46,10 @@ const Dates = ({year, month, initDate, prevLast, thisLast, today, onDateClick, o
                         <div className={`this ${p === today.date ? 'today' : ''}`} 
                         onDoubleClick={openModal}>
                             {p}
-                            {(p === initDate && todos) && <div className="todo" type="text">{`${todos.length} todo(s`})</div>}
+                            {(p === initDate && year === today.year && month ===today.month && todos) && 
+                                <div className="todo" type="text">{`${todos[0].text}`}</div>}
+                            {p === initDate && year === today.year && month ===today.month && todos &&
+                                todos.length >= 2 ? <div className="todo">more ...</div> : null}
                         </div>
                     </div>
                 );

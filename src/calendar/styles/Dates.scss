@@ -33,17 +33,18 @@
                 box-sizing: border-box;
                 border: 2px solid #c890ffd5;
                 //border: 2px solid white;
-                border-radius: 6px
+                //border-radius: 6px
             }
             .todo {
-                background-color: #c890ff;
+                background-color: #78e08f;
                 border-radius: 4px;
                 margin-top: 0.25rem;
                 color: white;
-                padding: 0.25rem;
+                padding-bottom: 0.1rem;
                 padding-left: 1rem;
+                font-family: 'Century Gothic', sans-serif;
                 font-size: 1rem;
-                font-weight: lighter;
+                //font-weight: lighter;
             }
         }
     }
