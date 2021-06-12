@@ -20,7 +20,8 @@ export const insertTodo = (nextId, text, year, month, date) => ({
             year,
             month,
             date
-        }
+        },
+        createdAt: Date().now()
     }
 });
 

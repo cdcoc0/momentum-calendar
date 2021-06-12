@@ -4,7 +4,9 @@ import './styles/TodoItem.scss'
 import cn from 'classnames';
 
 const TodoItem = ({todo, onRemove, onToggle}) => {
-    const {id, text, done} = todo;
+    console.log(todo);
+    console.log('work?');
+    const {id, text, done} = todo.todo;
 
     return (
         <div className="TodoItem">
