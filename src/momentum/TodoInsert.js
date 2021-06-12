@@ -4,11 +4,11 @@ import './styles/TodoInsert.scss';
 const TodoInsert = ({input, onChangeInput, onInsert}) => {
     const onTodoChange = useCallback(e => onChangeInput(e.target.value), [onChangeInput]);
     
-    const onTodoSubmit = useCallback(e => {
+    const onTodoSubmit = useCallback(async (e) => {
         e.preventDefault();
-        onInsert(input);
+        onInsert();
         onChangeInput('');
-    }, [onInsert, input, onChangeInput]);
+    }, [onInsert, onChangeInput]);
 
     return(
         <form className="TodoInsert" onSubmit={onTodoSubmit}>

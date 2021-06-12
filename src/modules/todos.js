@@ -1,3 +1,5 @@
+import { dbService } from '../fbconfig';
+
 const CHANGE_TODO_INPUT = 'todos/CHANGE_TODO_INPUT';
 const INSERT_TODO = 'todos/INSERT_TODO';
 const TOGGLE_TODO = 'todos/TOGGLE_TODO';
@@ -8,12 +10,17 @@ export const changeTodoInput = input => ({
     input
 });
 
-export const insertTodo = (nextId, text) => ({
+export const insertTodo = (nextId, text, year, month, date) => ({
     type: INSERT_TODO,
     todo: {
         id: nextId,
         text,
-        done: false
+        done: false,
+        dates: {
+            year,
+            month,
+            date
+        }
     }
 });
 
@@ -27,6 +34,12 @@ export const removeTodo = id => ({
     id
 });
 const todoLS = localStorage.getItem('TODO');
+
+const Post = async (todo) => {
+    await dbService.collection("kirri").add({
+        todo
+    });
+};
 
 const initialState = {
     input: '',
@@ -43,6 +56,7 @@ function todos(state = initialState, action) {
         case INSERT_TODO:
             const insert = state.todos.concat(action.todo);
             localStorage.setItem("TODO", JSON.stringify(insert));
+            Post(action.todo);
             return {
                 ...state,
                 todos: insert

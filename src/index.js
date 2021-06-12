@@ -7,7 +7,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import rootReducer from './modules';
+import firebase from './fbconfig';
 
+console.log(firebase);
 const store = createStore(rootReducer, composeWithDevTools());
 ReactDOM.render(
   <Provider store={store}>
