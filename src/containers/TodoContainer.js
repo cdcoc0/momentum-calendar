@@ -25,8 +25,8 @@ const mapDispatchToProps = dispatch => ({
     insertTodo: (nextId, text, year, month, initDate) => {
         dispatch(insertTodo(nextId, text, year, month, initDate))
     },
-    toggleTodo: id => {
-        dispatch(toggleTodo(id))
+    toggleTodo: (id, done) => {
+        dispatch(toggleTodo(id, done))
     },
     removeTodo: id => {
         dispatch(removeTodo(id))

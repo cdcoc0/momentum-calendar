@@ -24,9 +24,10 @@ export const insertTodo = (text, year, month, date) => ({
     }
 });
 
-export const toggleTodo = id => ({
+export const toggleTodo = (id, done) => ({
     type: TOGGLE_TODO,
-    id
+    id,
+    done
 });
 
 export const removeTodo = id => ({
@@ -44,7 +45,13 @@ const Post = async (todo) => {
 
 const Delete = async (id) => {
     await dbService.doc(`kirri/${id}`).delete();
-}
+};
+
+const Toggle = async (id, done) => {
+    await dbService.collection('kirri').doc(`${id}`).update({
+        "todo.done": !done
+    });
+};
 
 const initialState = {
     input: '',
@@ -67,7 +74,7 @@ function todos(state = initialState, action) {
             }
         case TOGGLE_TODO:
             const toggle = state.todos.map(todo => todo.id === action.id ? {...todo, done: !todo.done} : todo)
-            localStorage.setItem("TODO", JSON.stringify(toggle));
+            Toggle(action.id, action.done);
             return {
                 ...state,
                 todos: toggle

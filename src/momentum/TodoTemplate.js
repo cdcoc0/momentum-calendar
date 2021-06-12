@@ -18,8 +18,8 @@ const TodoTemplate = ({input, todos, onChangeInput, insertTodo, toggleTodo, remo
         }
     }, [removeTodo]);
 
-    const onToggle = useCallback(id => {
-        toggleTodo(id);
+    const onToggle = useCallback((id, done) => {
+        toggleTodo(id, done);
     }, [toggleTodo]);
     
     return (
