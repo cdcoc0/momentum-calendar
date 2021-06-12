@@ -13,8 +13,6 @@
         color: #b162ff;
         font-size: 1.25rem;
         font-weight: bold;
-        //border-bottom: 1px solid white;
-        //border-right: 1px solid white;
         &:nth-child(7n + 1) {
             color: #D13E3E;
         }
@@ -26,6 +24,7 @@
         }
         .this {
             cursor: pointer;
+            padding-right: 0.25rem;
             padding-left: 0.25rem;
             padding-top: 0.25rem;
             height: 90px;
@@ -37,7 +36,14 @@
                 border-radius: 6px
             }
             .todo {
-                background-color: pink;
+                background-color: #c890ff;
+                border-radius: 4px;
+                margin-top: 0.25rem;
+                color: white;
+                padding: 0.25rem;
+                padding-left: 1rem;
+                font-size: 1rem;
+                font-weight: lighter;
             }
         }
     }

@@ -1,5 +1,4 @@
 import React, {useCallback, useEffect, useState} from 'react';
-// import {TodayConsumer} from '../contexts/today';
 import './styles/Dates.scss';
 
 const getPrevDates = (plDay, plDate, prev) => {
@@ -16,7 +15,7 @@ const getNextDates = (tlDay, next) => {
     }
 };
 
-const Dates = ({year, month, initDate, prevLast, thisLast, today, onDateClick, openModal}) => {
+const Dates = ({year, month, initDate, prevLast, thisLast, today, onDateClick, openModal, todos}) => {
     const [page, setPage] = useState([]);
 
     const getPage = useCallback(() => {
@@ -47,7 +46,7 @@ const Dates = ({year, month, initDate, prevLast, thisLast, today, onDateClick, o
                         <div className={`this ${p === today.date ? 'today' : ''}`} 
                         onDoubleClick={openModal}>
                             {p}
-                            <div className="todo"></div>
+                            {(p === initDate && todos) && <div className="todo" type="text">{`${todos.length} todo(s`})</div>}
                         </div>
                     </div>
                 );
@@ -57,7 +56,7 @@ const Dates = ({year, month, initDate, prevLast, thisLast, today, onDateClick, o
                 );
             }
         }));
-    }, [page, thisLast, today, openModal, onDateClick]);
+    }, [page, thisLast, today, openModal, onDateClick, initDate, todos]);
 
     return (
         <div className="Dates">
