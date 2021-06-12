@@ -1,35 +1,27 @@
-import React, {useState, useCallback} from 'react';
+import React, {useCallback} from 'react';
 import TodoInsert from './TodoInsert';
 import TodoList from './TodoList';
 import './styles/TodoTemplate.scss';
 
-const TodoTemplate = () => {
+const TodoTemplate = ({input, todos, onChangeInput, insertTodo, toggleTodo, removeTodo}) => {
     const todoLS = localStorage.getItem('TODO');
-    const [todos, setTodos] = useState(todoLS ? JSON.parse(todoLS) : []);
 
-    const onInsert = useCallback(text => {
+    const onInsert = useCallback(() => {
         let nextId = todoLS ? JSON.parse(todoLS).length + 1 : 1;
-        const todo = {id: nextId, text, done: false};
-        setTodos(todos.concat(todo));
-        localStorage.setItem("TODO", JSON.stringify(todos.concat(todo)));
-        nextId += 1;
-    }, [todos, todoLS]);
+        insertTodo(nextId, input)
+    }, [todoLS, input, insertTodo]);
 
     const onRemove = useCallback(id => {
-        const filter = todos.filter(todo => todo.id !== id);
-        setTodos(filter);
-        localStorage.setItem("TODO", filter ? JSON.stringify(filter) : null);
-    }, [todos]);
+        removeTodo(id);
+    }, [removeTodo]);
 
     const onToggle = useCallback(id => {
-        const toggle = todos.map(todo => todo.id === id ? {...todo, done: !todo.done} : todo);
-        setTodos(toggle);
-        localStorage.setItem("TODO", JSON.stringify(toggle))
-    }, [todos]);
+        toggleTodo(id);
+    }, [toggleTodo]);
     
     return (
         <div className="TodoTemplate">
-            <TodoInsert onInsert={onInsert} />
+            <TodoInsert onInsert={onInsert} input={input} onChangeInput={onChangeInput} />
             <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
         </div>
     );

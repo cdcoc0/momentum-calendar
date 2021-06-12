@@ -1,20 +1,18 @@
-import React, {useState, useCallback} from 'react';
+import React, {useCallback} from 'react';
 import './styles/TodoInsert.scss';
 
-const TodoInsert = ({onInsert}) => {
-    const [todoInput, setTodoInput] = useState('');
-
-    const onTodoChange = useCallback(e => setTodoInput(e.target.value), []);
+const TodoInsert = ({input, onChangeInput, onInsert}) => {
+    const onTodoChange = useCallback(e => onChangeInput(e.target.value), [onChangeInput]);
     
     const onTodoSubmit = useCallback(e => {
         e.preventDefault();
-        onInsert(todoInput);
-        setTodoInput('');
-    }, [onInsert, todoInput]);
+        onInsert(input);
+        onChangeInput('');
+    }, [onInsert, input, onChangeInput]);
 
     return(
         <form className="TodoInsert" onSubmit={onTodoSubmit}>
-            <input type="text" placeholder="to do" onChange={onTodoChange} value={todoInput} />
+            <input type="text" placeholder="to do" onChange={onTodoChange} value={input} />
             <button type="submit">+</button>
         </form>
     );

@@ -9,7 +9,7 @@ const ListContainer = styled.div`
     //background-color: white;
 `
 
-const TodoList = ({todos, onRemove, onToggle}) => {
+const TodoList = ({todosInit, todos, onRemove, onToggle}) => {
     return(
         <ListContainer>
             {todos && todos.map(todo => <TodoItem key={todo.id} todo={todo} onRemove={onRemove} onToggle={onToggle}/>)}

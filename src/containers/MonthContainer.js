@@ -10,8 +10,8 @@ const MonthContainer = ({year, month, increaseMonth, decreaseMonth}) => {
 };
 
 const mapStateToProps = state => ({
-    year: state.year,
-    month: state.month
+    year: state.dateInfo.year,
+    month: state.dateInfo.month
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -1,10 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import User from './User';
-import Clock from './Clock';
 import ClockContainer from '../containers/ClockContainer';
 import Weather from './Weather';
-import TodoTemplate from './TodoTemplate';
+import TodoContainer from '../containers/TodoContainer';
 import {MdNavigateBefore} from 'react-icons/md';
 import './styles/Momentum.scss';
 
@@ -15,7 +14,7 @@ const Momentum = () => {
             </div>
             <div className="user-todo-container">
                 <User />
-                <TodoTemplate />
+                <TodoContainer />
             </div>
             <div className="clock-weather-container">
                 <ClockContainer />

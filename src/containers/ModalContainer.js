@@ -9,7 +9,7 @@ const ModalContainer = ({today, open, close}) => {
 }
 
 const mapStateToProps = state => ({
-    today: state.today
+    today: state.dateInfo.today
 });
 
 export default connect(

@@ -9,8 +9,8 @@ const ClockContainer = ({month, initDate}) => {
 }
 
 const mapStateToProps = state => ({
-    month: state.month,
-    initDate: state.initDate
+    month: state.dateInfo.month,
+    initDate: state.dateInfo.initDate
 });
 
 export default connect(

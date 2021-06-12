@@ -12,12 +12,12 @@ const DatesContainer = ({year, month, initDate, prevLast, thisLast, today, onDat
 };
 
 const mapStateToProps = state => ({
-    year: state.year,
-    month: state.month,
-    initDate: state.initDate,
-    prevLast: state.prevLast,
-    thisLast: state.thisLast,
-    today: state.today
+    year: state.dateInfo.year,
+    month: state.dateInfo.month,
+    initDate: state.dateInfo.initDate,
+    prevLast: state.dateInfo.prevLast,
+    thisLast: state.dateInfo.thisLast,
+    today: state.dateInfo.today
 });
 
 const mapDispatchToProps = dispatch => ({
