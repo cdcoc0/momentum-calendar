@@ -4,8 +4,6 @@
     font-family: "Lucida Console", Helvetica, sans-serif;
     position: absolute;
     overflow: auto;
-    //min-height: 100vh;
-    //height: 100%;
     .navSpace {
         display: flex;
         .nav {
@@ -35,8 +33,8 @@
                 padding-bottom: 0.5rem;
                 font-size: 1.25rem;
                 font-weight: bold;
-                color: #c890ff;
-                //color: white;
+                //color: #c890ff;
+                color: white;
                 .days {
                     width: calc(100% / 7);
                     &:nth-child(7n + 1) {
