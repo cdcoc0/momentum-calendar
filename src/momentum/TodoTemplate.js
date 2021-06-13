@@ -11,10 +11,7 @@ const TodoTemplate = ({input, onChangeInput, postTodo, toggleTodo, removeTodo,
     }, [input, year, month, date, postTodo]);
 
     const onRemove = useCallback(id => {
-        const ok = window.confirm('Delete?');
-        if (ok) {
             removeTodo(id);
-        }
     }, [removeTodo]);
 
     const onToggle = useCallback((id, done) => {

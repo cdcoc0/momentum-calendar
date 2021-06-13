@@ -12,7 +12,7 @@ const TodoInsert = ({input, onChangeInput, onInsert}) => {
 
     return(
         <form className="TodoInsert" onSubmit={onTodoSubmit}>
-            <input type="text" placeholder="to do" onChange={onTodoChange} value={input} />
+            <input type="text" placeholder="to do" onChange={onTodoChange} value={input} required />
             <button type="submit">+</button>
         </form>
     );

@@ -10,7 +10,7 @@
             color: #d1d1d1;
             cursor: pointer;
         }
-        .done {
+        &.done {
             text-decoration: line-through;
             .checkIcon {
                 color: #c890ff;

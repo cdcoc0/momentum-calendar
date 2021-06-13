@@ -3,30 +3,31 @@ import { dbService } from '../fbconfig';
 import ModalItem from './ModalItem';
 import './styles/Modal.scss';
 
-const Modal = ({today, open, close}) => {
-    const [modalValue, setModalValue] = useState('');
-    const [todoList, setTodoList] = useState([]);
+const Modal = ({today, open, close, input, deleteTodo, onChangeInput, toggleTodo, postTodo}) => {
     const [load, setLoad] = useState([]);
 
     const onChange = useCallback(e => {
-        setModalValue(e.target.value);
-    }, []);
+        onChangeInput(e.target.value);
+    }, [onChangeInput]);
 
     const onInsert = useCallback(() => {
-        const nextId = todoList.length + 1;
-        const todo = {id: nextId, todo: modalValue}
-        setTodoList(todoList.concat(todo));
-    }, [modalValue, todoList]);
+        postTodo(input, today.year, today.month, today.date)
+    }, [input, today, postTodo]);
 
     const onSubmit = useCallback(e => {
         e.preventDefault();
         onInsert();
-        setModalValue('');
-    }, [onInsert]);
+        onChangeInput('')
+    }, [onInsert, onChangeInput]);
 
     const onRemove = useCallback(id => {
-        setTodoList(todoList.filter(todo => todo.id !== id));
-    }, [todoList]);
+        const ok = window.confirm('delete?');
+        if(ok) { deleteTodo(id); }
+    }, [deleteTodo]);
+
+    const onToggle = useCallback((id, done) => {
+        toggleTodo(id, done);
+    }, [toggleTodo])
 
     useEffect(() => {
         dbService.collection("kirri").where("todo.dates.year", "==", today.year)
@@ -51,14 +52,14 @@ const Modal = ({today, open, close}) => {
                         </div>
                     </header>
                     <form onSubmit={onSubmit}>
-                        <input type="text" placeholder="todo" value={modalValue} onChange={onChange} />
+                        <input type="text" placeholder="todo" value={input} onChange={onChange} required />
                         <button className="insert-btn">+</button>
                     </form>
                     <div className="list">
-                        {load.map(todo => (<ModalItem key={todo.id} todo={todo} onRemove={onRemove} />))}
+                        {load.map(todo => (<ModalItem key={todo.id} todo={todo} onRemove={onRemove} onToggle={onToggle} />))}
                     </div>
                     <footer>
-                        <button className="close-btn" onClick={() => {close(); setModalValue('');}}>Close</button>
+                        <button className="close-btn" onClick={() => {close(); onChangeInput('');}}>Close</button>
                     </footer>
                 </section>
             )}
