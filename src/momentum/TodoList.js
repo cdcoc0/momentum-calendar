@@ -12,7 +12,7 @@ const ListContainer = styled.div`
 const TodoList = ({onRemove, onToggle}) => {
     const [load, setLoad] = useState([]);
     useEffect(() => {
-        dbService.collection("kirri").onSnapshot(s => {
+        dbService.collection("kirri").orderBy("todo.timestamp", "asc").onSnapshot(s => {
             const getArray = s.docs.map(doc => ({
                 id: doc.id,
                 ...doc.data()

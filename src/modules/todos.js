@@ -1,4 +1,5 @@
 import { dbService, firebaseInstance } from '../fbconfig';
+import dayjs from 'dayjs';
 
 const CHANGE_TODO_INPUT = 'todos/CHANGE_TODO_INPUT';
 const POST_TODO = 'todos/POST_TODO';
@@ -20,7 +21,8 @@ export const postTodo = (text, year, month, date) => ({
             month,
             date
         },
-        timestamp: firebaseInstance.firestore.FieldValue.serverTimestamp()
+        timestamp: new Date()
+        //firebaseInstance.firestore.FieldValue.serverTimestamp()
     }
 });
 
@@ -37,9 +39,10 @@ export const deleteTodo = id => ({
 
 
 const Post = async (todo) => {
-    await dbService.collection("kirri").add({
-        todo
-    });
+    const m = dayjs(`${todo.dates.month + 1}`).format('MMMM');
+    await dbService.collection("kirri").doc(m).update({
+        todos: firebaseInstance.firestore.FieldValue.arrayUnion(todo)
+    }); //배열 필드(todos) 업데이트로 해봐
 };
 
 // let getArray = [];
