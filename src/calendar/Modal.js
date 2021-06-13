@@ -1,10 +1,12 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
+import { dbService } from '../fbconfig';
 import ModalItem from './ModalItem';
 import './styles/Modal.scss';
 
 const Modal = ({today, open, close}) => {
     const [modalValue, setModalValue] = useState('');
     const [todoList, setTodoList] = useState([]);
+    const [load, setLoad] = useState([]);
 
     const onChange = useCallback(e => {
         setModalValue(e.target.value);
@@ -26,6 +28,19 @@ const Modal = ({today, open, close}) => {
         setTodoList(todoList.filter(todo => todo.id !== id));
     }, [todoList]);
 
+    useEffect(() => {
+        dbService.collection("kirri").where("todo.dates.year", "==", today.year)
+                                        .where("todo.dates.month", "==", today.month)
+                                        .where("todo.dates.date", "==", today.date)
+                                        .orderBy("todo.timestamp", "asc")
+                                        .onSnapshot(s => {
+            const getArray = s.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+            setLoad(getArray);
+        });
+    }, [])
     return (
         <div className={`Modal ${open ? 'openModal' : null}`}>
             {open && (
@@ -40,7 +55,7 @@ const Modal = ({today, open, close}) => {
                         <button className="insert-btn">+</button>
                     </form>
                     <div className="list">
-                        {todoList.map(t => (<ModalItem key={t.id} todo={t} onRemove={onRemove} />))}
+                        {load.map(todo => (<ModalItem key={todo.id} todo={todo} onRemove={onRemove} />))}
                     </div>
                     <footer>
                         <button className="close-btn" onClick={() => {close(); setModalValue('');}}>Close</button>

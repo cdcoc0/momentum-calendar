@@ -1,14 +1,16 @@
 import React from 'react';
+import cn from 'classnames';
 import {MdHighlightOff} from 'react-icons/md';
 import {GrNorton} from 'react-icons/gr'
 import './styles/ModalItem.scss';
 
 const ModalItem = ({todo, onRemove}) => {
+    const {text, done} = todo.todo;
     return (
         <div className="ModalItem">
-            <div className="content">
+            <div className={cn('content', {done})}>
                 <GrNorton className="checkIcon" />
-                {todo.todo}
+                {text}
             </div>
             <MdHighlightOff className="remove" onClick={() => onRemove(todo.id)} />
         </div>

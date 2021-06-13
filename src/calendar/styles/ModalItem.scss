@@ -6,8 +6,15 @@
     .content {
         flex: 1;
         .checkIcon {
-            margin-right: 0.5rem;
-            color: #c890ff;
+            margin-right: 0.75rem;
+            color: #d1d1d1;
+            cursor: pointer;
+        }
+        .done {
+            text-decoration: line-through;
+            .checkIcon {
+                color: #c890ff;
+            }
         }
     }
     .remove {
