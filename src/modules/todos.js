@@ -1,17 +1,17 @@
-import { dbService } from '../fbconfig';
+import { dbService, firebaseInstance } from '../fbconfig';
 
 const CHANGE_TODO_INPUT = 'todos/CHANGE_TODO_INPUT';
-const INSERT_TODO = 'todos/INSERT_TODO';
+const POST_TODO = 'todos/POST_TODO';
 const TOGGLE_TODO = 'todos/TOGGLE_TODO';
-const REMOVE_TODO = 'todos/REMOVE_TODO';
+const DELETE_TODO = 'todos/DELETE_TODO';
 
 export const changeTodoInput = input => ({
     type: CHANGE_TODO_INPUT,
     input
 });
 
-export const insertTodo = (text, year, month, date) => ({
-    type: INSERT_TODO,
+export const postTodo = (text, year, month, date) => ({
+    type: POST_TODO,
     todo: {
         text,
         done: false,
@@ -20,7 +20,7 @@ export const insertTodo = (text, year, month, date) => ({
             month,
             date
         },
-        //createdAt:
+        timestamp: firebaseInstance.firestore.FieldValue.serverTimestamp()
     }
 });
 
@@ -30,18 +30,34 @@ export const toggleTodo = (id, done) => ({
     done
 });
 
-export const removeTodo = id => ({
-    type: REMOVE_TODO,
+export const deleteTodo = id => ({
+    type: DELETE_TODO,
     id
 });
 
-const todoLS = localStorage.getItem('TODO');
 
 const Post = async (todo) => {
     await dbService.collection("kirri").add({
         todo
     });
 };
+
+// let getArray = [];
+// const Get = async () => {
+//     const init = await dbService.collection("kiri").get();
+//     init.forEach(document => {
+//      getArray.unshift(document.data())});
+// }
+
+//  const Get = () => {
+//     dbService.collection("kirri").onSnapshot(s => {
+//         getArray = s.docs.map(doc => ({
+//             id: doc.id,
+//             ...doc.data()
+//         }));
+//     });
+// };
+
 
 const Delete = async (id) => {
     await dbService.doc(`kirri/${id}`).delete();
@@ -55,7 +71,7 @@ const Toggle = async (id, done) => {
 
 const initialState = {
     input: '',
-    todos: todoLS ? JSON.parse(todoLS) : []
+    todos: []
 };
 
 function todos(state = initialState, action) {
@@ -65,7 +81,7 @@ function todos(state = initialState, action) {
                 ...state,
                 input: action.input
             }
-        case INSERT_TODO:
+        case POST_TODO:
             const insert = state.todos.concat(action.todo);
             Post(action.todo);
             return {
@@ -79,7 +95,7 @@ function todos(state = initialState, action) {
                 ...state,
                 todos: toggle
             };
-        case REMOVE_TODO:
+        case DELETE_TODO:
             const filter = state.todos.filter(todo => todo.id !== action.id)
             Delete(action.id);
             return {

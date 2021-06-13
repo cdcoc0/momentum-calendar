@@ -8,13 +8,8 @@ const ListContainer = styled.div`
     max-height: 320px;
     overflow-y: auto;
 `
-// const get = async () => {
-//     const newwts = await dbService.collection("kiri").get();
-//     newwts.forEach(document => {
-//     const nweetIbj = {...document.data(), id: document.id}
-//      setNweets((prev) => [document.data(), ...prev]});
 
-const TodoList = ({todos, onRemove, onToggle}) => {
+const TodoList = ({onRemove, onToggle}) => {
     const [load, setLoad] = useState([]);
     useEffect(() => {
         dbService.collection("kirri").onSnapshot(s => {
@@ -23,6 +18,7 @@ const TodoList = ({todos, onRemove, onToggle}) => {
                 ...doc.data()
             }));
             setLoad(getArray);
+            //오늘 날짜 데이터 가져와야 함
         })
     }, [])
     return(

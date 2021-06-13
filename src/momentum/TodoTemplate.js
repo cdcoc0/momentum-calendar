@@ -4,7 +4,7 @@ import TodoList from './TodoList';
 import './styles/TodoTemplate.scss';
 import { dbService } from '../fbconfig';
 
-const TodoTemplate = ({input, todos, onChangeInput, insertTodo, toggleTodo, removeTodo,
+const TodoTemplate = ({input, onChangeInput, insertTodo, toggleTodo, removeTodo,
                         year, month, date}) => {
 
     const onInsert = useCallback(() => {
@@ -25,7 +25,7 @@ const TodoTemplate = ({input, todos, onChangeInput, insertTodo, toggleTodo, remo
     return (
         <div className="TodoTemplate">
             <TodoInsert onInsert={onInsert} input={input} onChangeInput={onChangeInput} />
-            <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
+            <TodoList onRemove={onRemove} onToggle={onToggle} />
         </div>
     );
 }
