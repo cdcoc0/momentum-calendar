@@ -12,15 +12,16 @@ const ListContainer = styled.div`
 const TodoList = ({onRemove, onToggle, year, month, date}) => {
     const [load, setLoad] = useState([]);
     useEffect(() => {
-        dbService.collection("kirri").orderBy("todo.timestamp", "asc").onSnapshot(s => {
+        dbService.collection("kirri").where("todo.dates.year", "==", year)
+                                        .where("todo.dates.month", "==", month)
+                                        .where("todo.dates.date", "==", date)
+                                        .orderBy("todo.timestamp", "asc")
+                                        .onSnapshot(s => {
             const getArray = s.docs.map(doc => ({
                 id: doc.id,
                 ...doc.data()
             }));
             setLoad(getArray);
-            //오늘 날짜 데이터 가져와야 함
-            //orderBy("todo.timestamp", "asc").
-            //배열 필드 정렬
         });
     }, [])
 
