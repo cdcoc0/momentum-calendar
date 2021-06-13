@@ -5,7 +5,7 @@ import cn from 'classnames';
 
 const TodoItem = ({todo, onRemove, onToggle}) => {
     //console.log(todo.id);
-    const {text, done} = todo.todo;
+    const {text, done} = todo;
 
     return (
         <div className="TodoItem">
@@ -17,6 +17,8 @@ const TodoItem = ({todo, onRemove, onToggle}) => {
                 <MdRemoveCircleOutline />
             </div>
         </div>
+
+        //id????????
     );
 };
 

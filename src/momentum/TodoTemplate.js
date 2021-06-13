@@ -25,7 +25,7 @@ const TodoTemplate = ({input, onChangeInput, insertTodo, toggleTodo, removeTodo,
     return (
         <div className="TodoTemplate">
             <TodoInsert onInsert={onInsert} input={input} onChangeInput={onChangeInput} />
-            <TodoList onRemove={onRemove} onToggle={onToggle} />
+            <TodoList onRemove={onRemove} onToggle={onToggle} year={year} month={month} date={date} />
         </div>
     );
 }

@@ -42,7 +42,7 @@ const Post = async (todo) => {
     const m = dayjs(`${todo.dates.month + 1}`).format('MMMM');
     await dbService.collection("kirri").doc(m).update({
         todos: firebaseInstance.firestore.FieldValue.arrayUnion(todo)
-    }); //배열 필드(todos) 업데이트로 해봐
+    });
 };
 
 // let getArray = [];

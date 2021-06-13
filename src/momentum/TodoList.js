@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { dbService } from '../fbconfig';
+import dayjs from 'dayjs';
 import TodoItem from './TodoItem';
 
 const ListContainer = styled.div`
@@ -9,21 +10,29 @@ const ListContainer = styled.div`
     overflow-y: auto;
 `
 
-const TodoList = ({onRemove, onToggle}) => {
+const TodoList = ({onRemove, onToggle, year, month, date}) => {
     const [load, setLoad] = useState([]);
     useEffect(() => {
-        dbService.collection("kirri").orderBy("todo.timestamp", "asc").onSnapshot(s => {
-            const getArray = s.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            }));
+        const m = dayjs(`${month + 1}`).format('MMMM');
+        dbService.collection("kirri").doc(m).onSnapshot(s => {
+            console.log(s.data());
+            const getArray = [];
+            s.data().todos.map(todo => getArray.push(todo));
+            // const getArray = s.docs.map(doc => ({
+            //     id: doc.id,
+            //     ...doc.data()
+            // })
+            //);
+            console.log(getArray);
             setLoad(getArray);
             //오늘 날짜 데이터 가져와야 함
-        })
+            //orderBy("todo.timestamp", "asc").
+            //배열 필드 정렬
+        });
     }, [])
     return(
         <ListContainer>
-            {load.map(todo => <TodoItem key={todo.id} todo={todo} onRemove={onRemove} onToggle={onToggle}/>)}
+            {load.map((todo, index) => <TodoItem key={index} todo={todo} onRemove={onRemove} onToggle={onToggle}/>)}
         </ListContainer>
     );
 };
