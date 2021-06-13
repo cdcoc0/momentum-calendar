@@ -2,27 +2,24 @@ import React, {useCallback} from 'react';
 import TodoInsert from './TodoInsert';
 import TodoList from './TodoList';
 import './styles/TodoTemplate.scss';
-import dayjs from 'dayjs';
 
-const TodoTemplate = ({input, onChangeInput, insertTodo, toggleTodo, removeTodo,
+const TodoTemplate = ({input, onChangeInput, postTodo, toggleTodo, removeTodo,
                         year, month, date}) => {
-    const doc = dayjs(`${month + 1}`).format('MMMM');
-    console.log(doc);
 
     const onInsert = useCallback(() => {
-        insertTodo(input, year, month, date);
-    }, [input, year, month, date, insertTodo]);
+        postTodo(input, year, month, date);
+    }, [input, year, month, date, postTodo]);
 
     const onRemove = useCallback(id => {
         const ok = window.confirm('Delete?');
         if (ok) {
-            removeTodo(doc, id);
+            removeTodo(id);
         }
-    }, [removeTodo, doc]);
+    }, [removeTodo]);
 
     const onToggle = useCallback((id, done) => {
-        toggleTodo(doc, id, done);
-    }, [toggleTodo, doc]);
+        toggleTodo(id, done);
+    }, [toggleTodo]);
     
     return (
         <div className="TodoTemplate">

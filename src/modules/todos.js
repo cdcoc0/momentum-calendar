@@ -1,6 +1,5 @@
 import { dbService, firebaseInstance } from '../fbconfig';
-import dayjs from 'dayjs';
-import {v4 as uuidv4} from 'uuid';
+//import {v4 as uuidv4} from 'uuid';
 
 const CHANGE_TODO_INPUT = 'todos/CHANGE_TODO_INPUT';
 const POST_TODO = 'todos/POST_TODO';
@@ -22,40 +21,40 @@ export const postTodo = (text, year, month, date) => ({
             month,
             date
         },
-        timestamp: new Date(),
-        id: uuidv4()
-        //firebaseInstance.firestore.FieldValue.serverTimestamp()
+        timestamp: firebaseInstance.firestore.FieldValue.serverTimestamp(),
+        //id: uuidv4()
     }
 });
 
-export const toggleTodo = (doc, id, done) => ({
+export const toggleTodo = (id, done) => ({
     type: TOGGLE_TODO,
-    doc,
     id,
     done
 });
 
-export const deleteTodo = (doc, id) => ({
+export const deleteTodo = (id) => ({
     type: DELETE_TODO,
-    doc,
     id
 });
 
 
 const Post = async (todo) => {
-    const m = dayjs(`${todo.dates.month + 1}`).format('MMMM');
-    const doc = await dbService.collection("kirri").doc(m).get();
-    if(doc.exists) {
-        await dbService.collection("kirri").doc(m).update({
-            todos: firebaseInstance.firestore.FieldValue.arrayUnion(todo)
-        });
-    } else {
-        await dbService.collection("kirri").doc(m).set({
-            todos: [todo]
-        });
-    }
-    
+    dbService.collection("kirri").add({
+        todo
+    })
 };
+
+// const m = dayjs(`${todo.dates.month + 1}`).format('MMMM');
+//     const doc = await dbService.collection("kirri").doc(m).get();
+//     if(doc.exists) {
+//         await dbService.collection("kirri").doc(m).update({
+//             todos: firebaseInstance.firestore.FieldValue.arrayUnion(todo)
+//         });
+//     } else {
+//         await dbService.collection("kirri").doc(m).set({
+//             todos: [todo]
+//         });
+//     }
 
 // let getArray = [];
 // const Get = async () => {
@@ -74,16 +73,13 @@ const Post = async (todo) => {
 // };
 
 
-const Delete = async (doc, id) => {
-    await dbService.doc(`kirri/${doc}`).update({
-        todos: firebaseInstance.firestore.FieldValue.arrayRemove()
-    })
+const Delete = async (id) => {
+    await dbService.doc(`kirri/${id}`).delete();
 };
 
-const Toggle = async (doc, id, done) => {
-    
-    await dbService.doc(`kirri/${doc}`).update({
-        "todo": !done
+const Toggle = async (id, done) => {
+    await dbService.doc(`kirri/${id}`).update({
+        "todo.done": !done
     });
 };
 
@@ -108,14 +104,14 @@ function todos(state = initialState, action) {
             }
         case TOGGLE_TODO:
             const toggle = state.todos.map(todo => todo.id === action.id ? {...todo, done: !todo.done} : todo)
-            Toggle(action.doc, action.id, action.done);
+            Toggle(action.id, action.done);
             return {
                 ...state,
                 todos: toggle
             };
         case DELETE_TODO:
             const filter = state.todos.filter(todo => todo.id !== action.id)
-            Delete(action.doc, action.id);
+            Delete(action.id);
             return {
                 ...state,
                 todos: filter

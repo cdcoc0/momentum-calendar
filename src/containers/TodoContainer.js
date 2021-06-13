@@ -6,7 +6,7 @@ import TodoTemplate from '../momentum/TodoTemplate';
 const TodoContainer = ({input, changeTodoInput, postTodo, toggleTodo, deleteTodo, year, month, initDate}) => {
     return (
         <TodoTemplate input={input} year={year} month={month} date={initDate}
-            onChangeInput={changeTodoInput} insertTodo={postTodo} toggleTodo={toggleTodo} removeTodo={deleteTodo} />
+            onChangeInput={changeTodoInput} postTodo={postTodo} toggleTodo={toggleTodo} removeTodo={deleteTodo} />
     );
 };
 
@@ -21,14 +21,14 @@ const mapDispatchToProps = dispatch => ({
     changeTodoInput: input => {
         dispatch(changeTodoInput(input))
     },
-    postTodo: (nextId, text, year, month, initDate) => {
-        dispatch(postTodo(nextId, text, year, month, initDate))
+    postTodo: (text, year, month, initDate) => {
+        dispatch(postTodo(text, year, month, initDate))
     },
-    toggleTodo: (doc, id, done) => {
-        dispatch(toggleTodo(doc, id, done))
+    toggleTodo: (id, done) => {
+        dispatch(toggleTodo(id, done))
     },
-    deleteTodo: (doc, id) => {
-        dispatch(deleteTodo(doc, id))
+    deleteTodo: (id) => {
+        dispatch(deleteTodo(id))
     }
 });
 
