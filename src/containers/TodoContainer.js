@@ -24,11 +24,11 @@ const mapDispatchToProps = dispatch => ({
     postTodo: (nextId, text, year, month, initDate) => {
         dispatch(postTodo(nextId, text, year, month, initDate))
     },
-    toggleTodo: (id, done) => {
-        dispatch(toggleTodo(id, done))
+    toggleTodo: (doc, id, done) => {
+        dispatch(toggleTodo(doc, id, done))
     },
-    deleteTodo: id => {
-        dispatch(deleteTodo(id))
+    deleteTodo: (doc, id) => {
+        dispatch(deleteTodo(doc, id))
     }
 });
 

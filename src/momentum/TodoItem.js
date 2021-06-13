@@ -5,20 +5,18 @@ import cn from 'classnames';
 
 const TodoItem = ({todo, onRemove, onToggle}) => {
     //console.log(todo.id);
-    const {text, done} = todo;
+    const {id, text, done} = todo;
 
     return (
         <div className="TodoItem">
-            <div className={cn('checkbox', {done})} onClick={() => onToggle(todo.id, done)}>
+            <div className={cn('checkbox', {done})} onClick={() => onToggle(id, done)}>
                 {done ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
                 <div className="text">{text}</div>
             </div>
-            <div className="remove" onClick={() => onRemove(todo.id)}>
+            <div className="remove" onClick={() => onRemove(id)}>
                 <MdRemoveCircleOutline />
             </div>
         </div>
-
-        //id????????
     );
 };
 

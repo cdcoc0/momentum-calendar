@@ -2,10 +2,12 @@ import React, {useCallback} from 'react';
 import TodoInsert from './TodoInsert';
 import TodoList from './TodoList';
 import './styles/TodoTemplate.scss';
-import { dbService } from '../fbconfig';
+import dayjs from 'dayjs';
 
 const TodoTemplate = ({input, onChangeInput, insertTodo, toggleTodo, removeTodo,
                         year, month, date}) => {
+    const doc = dayjs(`${month + 1}`).format('MMMM');
+    console.log(doc);
 
     const onInsert = useCallback(() => {
         insertTodo(input, year, month, date);
@@ -14,13 +16,13 @@ const TodoTemplate = ({input, onChangeInput, insertTodo, toggleTodo, removeTodo,
     const onRemove = useCallback(id => {
         const ok = window.confirm('Delete?');
         if (ok) {
-            removeTodo(id);
+            removeTodo(doc, id);
         }
-    }, [removeTodo]);
+    }, [removeTodo, doc]);
 
     const onToggle = useCallback((id, done) => {
-        toggleTodo(id, done);
-    }, [toggleTodo]);
+        toggleTodo(doc, id, done);
+    }, [toggleTodo, doc]);
     
     return (
         <div className="TodoTemplate">

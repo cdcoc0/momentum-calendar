@@ -1,5 +1,6 @@
 import { dbService, firebaseInstance } from '../fbconfig';
 import dayjs from 'dayjs';
+import {v4 as uuidv4} from 'uuid';
 
 const CHANGE_TODO_INPUT = 'todos/CHANGE_TODO_INPUT';
 const POST_TODO = 'todos/POST_TODO';
@@ -21,28 +22,39 @@ export const postTodo = (text, year, month, date) => ({
             month,
             date
         },
-        timestamp: new Date()
+        timestamp: new Date(),
+        id: uuidv4()
         //firebaseInstance.firestore.FieldValue.serverTimestamp()
     }
 });
 
-export const toggleTodo = (id, done) => ({
+export const toggleTodo = (doc, id, done) => ({
     type: TOGGLE_TODO,
+    doc,
     id,
     done
 });
 
-export const deleteTodo = id => ({
+export const deleteTodo = (doc, id) => ({
     type: DELETE_TODO,
+    doc,
     id
 });
 
 
 const Post = async (todo) => {
     const m = dayjs(`${todo.dates.month + 1}`).format('MMMM');
-    await dbService.collection("kirri").doc(m).update({
-        todos: firebaseInstance.firestore.FieldValue.arrayUnion(todo)
-    });
+    const doc = await dbService.collection("kirri").doc(m).get();
+    if(doc.exists) {
+        await dbService.collection("kirri").doc(m).update({
+            todos: firebaseInstance.firestore.FieldValue.arrayUnion(todo)
+        });
+    } else {
+        await dbService.collection("kirri").doc(m).set({
+            todos: [todo]
+        });
+    }
+    
 };
 
 // let getArray = [];
@@ -62,13 +74,16 @@ const Post = async (todo) => {
 // };
 
 
-const Delete = async (id) => {
-    await dbService.doc(`kirri/${id}`).delete();
+const Delete = async (doc, id) => {
+    await dbService.doc(`kirri/${doc}`).update({
+        todos: firebaseInstance.firestore.FieldValue.arrayRemove()
+    })
 };
 
-const Toggle = async (id, done) => {
-    await dbService.collection('kirri').doc(`${id}`).update({
-        "todo.done": !done
+const Toggle = async (doc, id, done) => {
+    
+    await dbService.doc(`kirri/${doc}`).update({
+        "todo": !done
     });
 };
 
@@ -93,14 +108,14 @@ function todos(state = initialState, action) {
             }
         case TOGGLE_TODO:
             const toggle = state.todos.map(todo => todo.id === action.id ? {...todo, done: !todo.done} : todo)
-            Toggle(action.id, action.done);
+            Toggle(action.doc, action.id, action.done);
             return {
                 ...state,
                 todos: toggle
             };
         case DELETE_TODO:
             const filter = state.todos.filter(todo => todo.id !== action.id)
-            Delete(action.id);
+            Delete(action.doc, action.id);
             return {
                 ...state,
                 todos: filter

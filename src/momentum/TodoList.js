@@ -17,13 +17,9 @@ const TodoList = ({onRemove, onToggle, year, month, date}) => {
         dbService.collection("kirri").doc(m).onSnapshot(s => {
             console.log(s.data());
             const getArray = [];
-            s.data().todos.map(todo => getArray.push(todo));
-            // const getArray = s.docs.map(doc => ({
-            //     id: doc.id,
-            //     ...doc.data()
-            // })
-            //);
-            console.log(getArray);
+            if(s.data()) {
+                s.data().todos.map(todo => getArray.push(todo));
+            }
             setLoad(getArray);
             //오늘 날짜 데이터 가져와야 함
             //orderBy("todo.timestamp", "asc").
@@ -32,7 +28,7 @@ const TodoList = ({onRemove, onToggle, year, month, date}) => {
     }, [])
     return(
         <ListContainer>
-            {load.map((todo, index) => <TodoItem key={index} todo={todo} onRemove={onRemove} onToggle={onToggle}/>)}
+            {load.map(todo => <TodoItem key={todo.id} todo={todo} onRemove={onRemove} onToggle={onToggle}/>)}
         </ListContainer>
     );
 };
