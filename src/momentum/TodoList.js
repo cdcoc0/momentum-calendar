@@ -25,14 +25,6 @@ const TodoList = ({onRemove, onToggle, year, month, date}) => {
         });
     }, [])
 
-    // const m = dayjs(`${month + 1}`).format('MMMM');
-    //     dbService.collection("kirri").doc(m).onSnapshot(s => {
-    //         const getArray = [];
-    //         if(s.data()) {
-    //             s.data().todos.map(todo => getArray.push(todo));
-    //         }
-    //         setLoad(getArray);
-
     return(
         <ListContainer>
             {load.map(todo => <TodoItem key={todo.id} todo={todo} onRemove={onRemove} onToggle={onToggle}/>)}

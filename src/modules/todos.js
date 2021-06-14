@@ -1,10 +1,10 @@
 import { dbService, firebaseInstance } from '../fbconfig';
-//import {v4 as uuidv4} from 'uuid';
 
 const CHANGE_TODO_INPUT = 'todos/CHANGE_TODO_INPUT';
 const POST_TODO = 'todos/POST_TODO';
 const TOGGLE_TODO = 'todos/TOGGLE_TODO';
 const DELETE_TODO = 'todos/DELETE_TODO';
+const GET_TODO = 'todos/GET_TODO';
 
 export const changeTodoInput = input => ({
     type: CHANGE_TODO_INPUT,
@@ -22,7 +22,6 @@ export const postTodo = (text, year, month, date) => ({
             date
         },
         timestamp: firebaseInstance.firestore.FieldValue.serverTimestamp(),
-        //id: uuidv4()
     }
 });
 
@@ -37,41 +36,18 @@ export const deleteTodo = (id) => ({
     id
 });
 
+export const getTodo = (year, month) => ({
+    type: GET_TODO,
+    year,
+    month
+});
+
 
 const Post = async (todo) => {
     dbService.collection("kirri").add({
         todo
     })
 };
-
-// const m = dayjs(`${todo.dates.month + 1}`).format('MMMM');
-//     const doc = await dbService.collection("kirri").doc(m).get();
-//     if(doc.exists) {
-//         await dbService.collection("kirri").doc(m).update({
-//             todos: firebaseInstance.firestore.FieldValue.arrayUnion(todo)
-//         });
-//     } else {
-//         await dbService.collection("kirri").doc(m).set({
-//             todos: [todo]
-//         });
-//     }
-
-// let getArray = [];
-// const Get = async () => {
-//     const init = await dbService.collection("kiri").get();
-//     init.forEach(document => {
-//      getArray.unshift(document.data())});
-// }
-
-//  const Get = () => {
-//     dbService.collection("kirri").onSnapshot(s => {
-//         getArray = s.docs.map(doc => ({
-//             id: doc.id,
-//             ...doc.data()
-//         }));
-//     });
-// };
-
 
 const Delete = async (id) => {
     await dbService.doc(`kirri/${id}`).delete();
@@ -82,6 +58,19 @@ const Toggle = async (id, done) => {
         "todo.done": !done
     });
 };
+let getArray = []
+const Get = (year, month) => {
+        dbService.collection("kirri").where("todo.dates.year", "==", year)
+                                        .where("todo.dates.month", "==", month)
+                                        .orderBy("todo.dates.date", "asc")
+                                        .orderBy("todo.timestamp", "asc")
+                                        .onSnapshot(s => {
+                getArray = s.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+        });
+}
 
 const initialState = {
     input: '',
@@ -95,27 +84,27 @@ function todos(state = initialState, action) {
                 ...state,
                 input: action.input
             }
+
         case POST_TODO:
-            const insert = state.todos.concat(action.todo);
             Post(action.todo);
-            return {
-                ...state,
-                todos: insert
-            }
-        case TOGGLE_TODO:
-            const toggle = state.todos.map(todo => todo.id === action.id ? {...todo, done: !todo.done} : todo)
+            return null;
+
+            case TOGGLE_TODO:
             Toggle(action.id, action.done);
-            return {
-                ...state,
-                todos: toggle
-            };
+            return null;
+
         case DELETE_TODO:
-            const filter = state.todos.filter(todo => todo.id !== action.id)
             Delete(action.id);
+            return null;
+
+        case GET_TODO:
+            Get(action.year, action.month)
+            console.log(getArray);
             return {
-                ...state,
-                todos: filter
-            };
+                ...state, 
+                todos: getArray
+            }
+
         default:
             return state;
     }

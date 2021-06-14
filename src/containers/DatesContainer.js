@@ -2,12 +2,13 @@ import React from 'react';
 import {connect} from 'react-redux';
 import{onDateClick} from '../modules/dateInfo';
 import Dates from '../calendar/Dates';
+import { getTodo } from '../modules/todos';
 
-const DatesContainer = ({year, month, initDate, prevLast, thisLast, today, onDateClick, openModal, todos}) => {
+const DatesContainer = ({year, month, initDate, prevLast, thisLast, today, onDateClick, openModal, getTodo, todos}) => {
     return (
         <Dates year={year} month={month} initDate={initDate} 
             prevLast={prevLast} thisLast={thisLast} today={today} onDateClick={onDateClick}
-            openModal={openModal} todos={todos}  />
+            openModal={openModal} getTodo={getTodo} todos={todos}  />
     );
 };
 
@@ -24,6 +25,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     onDateClick: p => {
         dispatch(onDateClick(p))
+    },
+    getTodo: (year, month) => {
+        dispatch(getTodo(year, month));
     }
 })
 

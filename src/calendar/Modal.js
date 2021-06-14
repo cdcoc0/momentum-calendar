@@ -41,7 +41,7 @@ const Modal = ({today, open, close, input, deleteTodo, onChangeInput, toggleTodo
             }));
             setLoad(getArray);
         });
-    }, [])
+    }, [today])
     return (
         <div className={`Modal ${open ? 'openModal' : null}`}>
             {open && (
@@ -52,7 +52,7 @@ const Modal = ({today, open, close, input, deleteTodo, onChangeInput, toggleTodo
                         </div>
                     </header>
                     <form onSubmit={onSubmit}>
-                        <input type="text" placeholder="todo" value={input} onChange={onChange} required />
+                        <input type="text" placeholder="todo" value={input} onChange={onChange} autoFocus required />
                         <button className="insert-btn">+</button>
                     </form>
                     <div className="list">

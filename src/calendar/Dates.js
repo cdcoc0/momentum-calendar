@@ -16,9 +16,12 @@ const getNextDates = (tlDay, next) => {
     }
 };
 
-const Dates = ({year, month, initDate, prevLast, thisLast, today, onDateClick, openModal}) => {
+const Dates = ({year, month, initDate, prevLast, thisLast, today, onDateClick, openModal, getTodo, todos}) => {
     const [page, setPage] = useState([]);
-    const [todos, setTodos] = useState([]);
+    //const [todos, setTodos] = useState([]);
+    const [load, setLoad] = useState([]);
+    const [num, setNum] = useState([]);
+    const [text, setText] = useState([])
 
     const getPage = useCallback(() => {
         const plDate = prevLast.getDate();
@@ -33,23 +36,61 @@ const Dates = ({year, month, initDate, prevLast, thisLast, today, onDateClick, o
         setPage(prev.concat(current, next));
     }, [prevLast, thisLast]);
 
-    const getTodos = useCallback(() => {
-        dbService.collection("kirri").onSnapshot(s => {
-            const getArray = s.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            }));
-            setTodos(getArray);
-            //날짜별 데이터
-        })
-    }, [])
+    // const getTodos = useCallback(() => {
+    //     let array = [];
+    //     dbService.collection("kirri").where("todo.dates.year", "==", year)
+    //                                     .where("todo.dates.month", "==", month)
+    //                                     .orderBy("todo.dates.date", "asc")
+    //                                     .orderBy("todo.timestamp", "asc")
+    //                                     .onSnapshot(s => {
+    //             const getArray = s.docs.map(doc => ({
+    //                 id: doc.id,
+    //                 ...doc.data()
+    //             }));
+    //             //getArray.map(todo => state.todos[todo.todo.date].push(todo.todo.text))
+    //             setLoad(getArray);
+    //     });
+        // load.map(l => {
+        //     for(let i = 1; i <= 31; i++) {
+        //         if(l.todo.dates.date === i) {
+        //             array.push(i);
+        //         };
+        //     };
+        // });
+        // for(let i = 0; i < array.length; i++) {
+        //     if(array[i] !== 'more') {
+        //         for(let j = array.length; j > i; j--) {
+        //             if(array[i] === array[j]) {
+        //                 array.splice(j, 1);
+        //             }
+        //         }
+        //     }
+            
+            //얘좀 어케좀 해봐라..
+            //if(array[i] === array[i - 1]) { array[i] = 'more' }
+            //그냥 오늘 할일 다 state에 넣고 length
+        //}
+        // setNum(array);
+    // }, [year, month])
     
     useEffect(() => {
         getPage();
-        getTodos();
-        //해당 year, month 데이터 date순으로 가져와서
-        //어디 state에 담아서 뿌림
-    }, [year, month, initDate, getPage, getTodos]);
+        //getTodos();
+        getTodo(year, month);
+    }, [year, month, initDate, getPage, getTodo]);
+    //console.log(text);
+
+    // const todoCalendar = useCallback(() => {
+    //     let todoArray = []
+    //     load.map(l => {
+    //         for(let i = 0; i < num.length; i++) {
+    //             if(l.todo.dates.date === num[i]) {
+    //                 todoArray.push(l);
+    //             }
+    //         }
+    //     })
+    //     console.log(todoArray);
+    // }, [])
 
     const initPage = useCallback(() => {
         const firstDateIndex = page.indexOf(1);
@@ -62,10 +103,12 @@ const Dates = ({year, month, initDate, prevLast, thisLast, today, onDateClick, o
                         <div className={`this ${p === today.date ? 'today' : ''}`} 
                         onDoubleClick={openModal}>
                             {p}
-                            {p === initDate && year === today.year && month ===today.month && 
-                            todos.length !== 0 ? <div className="todo" type="text">{`${todos[0].todo.text}`}</div> : null}
-                            {p === initDate && year === today.year && month ===today.month && 
-                                todos.length >= 2 ? <div className="todo">more ...</div> : null}
+                            {todos.map(l => l.todo.dates.date === p ? 
+                                <div key={l.id} className="todo" type="text">{l.todo.text}</div> : null)}
+                                {/* 일별 todo를 state에 담아야 해 일단 */}
+                            {/* {p === initDate && year === today.year && month ===today.month && 
+                            todos.length !== 0 ? <div className="todo" type="text">{`${todos[0].todo.text}`}</div> : null} */}
+                            
                         </div>
                     </div>
                 );
@@ -75,7 +118,7 @@ const Dates = ({year, month, initDate, prevLast, thisLast, today, onDateClick, o
                 );
             }
         }));
-    }, [page, thisLast, today, openModal, onDateClick, initDate, todos, month, year]);
+    }, [page, thisLast, today, openModal, onDateClick, initDate, month, year]);
 
     return (
         <div className="Dates">
