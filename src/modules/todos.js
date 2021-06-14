@@ -4,7 +4,6 @@ const CHANGE_TODO_INPUT = 'todos/CHANGE_TODO_INPUT';
 const POST_TODO = 'todos/POST_TODO';
 const TOGGLE_TODO = 'todos/TOGGLE_TODO';
 const DELETE_TODO = 'todos/DELETE_TODO';
-const GET_TODO = 'todos/GET_TODO';
 
 export const changeTodoInput = input => ({
     type: CHANGE_TODO_INPUT,
@@ -36,13 +35,6 @@ export const deleteTodo = (id) => ({
     id
 });
 
-export const getTodo = (year, month) => ({
-    type: GET_TODO,
-    year,
-    month
-});
-
-
 const Post = async (todo) => {
     dbService.collection("kirri").add({
         todo
@@ -58,23 +50,9 @@ const Toggle = async (id, done) => {
         "todo.done": !done
     });
 };
-let getArray = []
-const Get = (year, month) => {
-        dbService.collection("kirri").where("todo.dates.year", "==", year)
-                                        .where("todo.dates.month", "==", month)
-                                        .orderBy("todo.dates.date", "asc")
-                                        .orderBy("todo.timestamp", "asc")
-                                        .onSnapshot(s => {
-                getArray = s.docs.map(doc => ({
-                    id: doc.id,
-                    ...doc.data()
-                }));
-        });
-}
 
 const initialState = {
     input: '',
-    todos: []
 };
 
 function todos(state = initialState, action) {
@@ -96,13 +74,6 @@ function todos(state = initialState, action) {
         case DELETE_TODO:
             Delete(action.id);
             return null;
-
-        case GET_TODO:
-            Get(action.year, action.month)
-            return {
-                ...state, 
-                todos: getArray
-            }
 
         default:
             return state;
