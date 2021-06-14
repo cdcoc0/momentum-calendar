@@ -3,12 +3,12 @@ import { dbService } from '../fbconfig';
 import ModalItem from './ModalItem';
 import './styles/Modal.scss';
 
-const Modal = ({today, open, close, input, deleteTodo, onChangeInput, toggleTodo, postTodo}) => {
+const Modal = ({today, open, close, input, deleteTodo, changeTodoInput, toggleTodo, postTodo}) => {
     const [load, setLoad] = useState([]);
 
     const onChange = useCallback(e => {
-        onChangeInput(e.target.value);
-    }, [onChangeInput]);
+        changeTodoInput(e.target.value);
+    }, [changeTodoInput]);
 
     const onInsert = useCallback(() => {
         postTodo(input, today.year, today.month, today.date)
@@ -17,8 +17,8 @@ const Modal = ({today, open, close, input, deleteTodo, onChangeInput, toggleTodo
     const onSubmit = useCallback(e => {
         e.preventDefault();
         onInsert();
-        onChangeInput('')
-    }, [onInsert, onChangeInput]);
+        changeTodoInput('');
+    }, [onInsert, changeTodoInput]);
 
     const onRemove = useCallback(id => {
         const ok = window.confirm('delete?');
@@ -59,7 +59,7 @@ const Modal = ({today, open, close, input, deleteTodo, onChangeInput, toggleTodo
                         {load.map(todo => (<ModalItem key={todo.id} todo={todo} onRemove={onRemove} onToggle={onToggle} />))}
                     </div>
                     <footer>
-                        <button className="close-btn" onClick={() => {close(); onChangeInput('');}}>Close</button>
+                        <button className="close-btn" onClick={() => {close(); changeTodoInput('');}}>Close</button>
                     </footer>
                 </section>
             )}

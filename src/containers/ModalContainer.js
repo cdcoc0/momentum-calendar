@@ -6,7 +6,7 @@ import { deleteTodo, changeTodoInput, toggleTodo, postTodo } from '../modules/to
 const ModalContainer = ({today, open, close, input, deleteTodo, changeTodoInput, toggleTodo, postTodo}) => {
     return (
         <Modal today={today} open={open} close={close} input={input} 
-            deleteTodo={deleteTodo} onChangeInput={changeTodoInput} toggleTodo={toggleTodo} postTodo={postTodo} />
+            deleteTodo={deleteTodo} changeTodoInput={changeTodoInput} toggleTodo={toggleTodo} postTodo={postTodo} />
     );
 }
 

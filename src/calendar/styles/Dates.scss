@@ -28,6 +28,7 @@
             padding-left: 0.25rem;
             padding-top: 0.25rem;
             height: 90px;
+            overflow: hidden;
             &.today {
                 //background-color: #c890ff60;
                 box-sizing: border-box;
@@ -36,8 +37,8 @@
                 //border-radius: 6px
             }
             .todo {
-                //background-color: #78e08f;
-                background-color: #ffdd59;
+                background-color: #78e08f;
+                //background-color: #ffdd59;
                 //#f6e58d
                 border-radius: 4px;
                 margin-top: 0.25rem;

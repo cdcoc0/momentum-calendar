@@ -3,18 +3,16 @@ import {connect} from 'react-redux';
 import { changeTodoInput, postTodo, toggleTodo, deleteTodo } from '../modules/todos';
 import TodoTemplate from '../momentum/TodoTemplate';
 
-const TodoContainer = ({input, changeTodoInput, postTodo, toggleTodo, deleteTodo, year, month, initDate}) => {
+const TodoContainer = ({input, changeTodoInput, postTodo, toggleTodo, deleteTodo, initializeDate}) => {
     return (
-        <TodoTemplate input={input} year={year} month={month} date={initDate}
+        <TodoTemplate input={input} initializeDate={initializeDate}
             onChangeInput={changeTodoInput} postTodo={postTodo} toggleTodo={toggleTodo} removeTodo={deleteTodo} />
     );
 };
 
 const mapStateToProps = state => ({
     input: state.todos.input,
-    year: state.dateInfo.year,
-    month: state.dateInfo.month,
-    initDate: state.dateInfo.initDate
+    initializeDate: state.dateInfo.initializeDate
 });
 
 const mapDispatchToProps = dispatch => ({

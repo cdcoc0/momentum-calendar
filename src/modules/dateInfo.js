@@ -20,7 +20,8 @@ const initialState = {
     initDate: date.getDate(),
     prevLast: getPrevLast(date.getFullYear(), date.getMonth()),
     thisLast: getThisLast(date.getFullYear(), date.getMonth()),
-    today: {year: date.getFullYear(), month: date.getMonth(), date: date.getDate()}
+    today: {year: date.getFullYear(), month: date.getMonth(), date: date.getDate()},
+    initializeDate: {year: date.getFullYear(), month: date.getMonth(), date: date.getDate()}
 };
 
 function dateInfo(state = initialState, action) {

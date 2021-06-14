@@ -59,21 +59,26 @@ function todos(state = initialState, action) {
     switch(action.type) {
         case CHANGE_TODO_INPUT:
             return {
-                ...state,
                 input: action.input
             }
 
         case POST_TODO:
             Post(action.todo);
-            return null;
-
+            return {
+                ...state
+            }
+            
             case TOGGLE_TODO:
             Toggle(action.id, action.done);
-            return null;
+            return {
+                ...state
+            }
 
         case DELETE_TODO:
             Delete(action.id);
-            return null;
+            return {
+                ...state
+            }
 
         default:
             return state;
