@@ -99,7 +99,6 @@ function todos(state = initialState, action) {
 
         case GET_TODO:
             Get(action.year, action.month)
-            console.log(getArray);
             return {
                 ...state, 
                 todos: getArray
