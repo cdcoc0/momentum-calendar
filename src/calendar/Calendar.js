@@ -4,7 +4,7 @@ import Background from './Background';
 import MonthContainer from '../containers/MonthContainer';
 import DatesContainer from '../containers/DatesContainer';
 import ModalContainer from '../containers/ModalContainer';
-import {MdNavigateBefore} from 'react-icons/md';
+import {TiArrowBack} from 'react-icons/ti';
 import './styles/Calendar.scss';
 
 const Calendar = () => {
@@ -24,8 +24,13 @@ const Calendar = () => {
             <Background />
             <MonthContainer />
             <div className="navSpace">
-                <div className="nav">
-                    <Link to="/"><MdNavigateBefore /></Link>
+                <div clasSName="navC-container">
+                    <Link to="/">
+                        <div className="nav">
+                            <TiArrowBack className="moment-icon" />
+                            <span className="moment-font">back</span>
+                        </div>
+                    </Link>
                 </div>
                 <div className="body">
                     <div className="daysArray">

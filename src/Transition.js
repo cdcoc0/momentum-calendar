@@ -22,7 +22,7 @@ const Transition = () => {
 
   return (
       <TransitionGroup className="Transition-group">
-        <CSSTransition key={location.pathname} 
+        <CSSTransition key={location.pathname}
                         classNames={direction} timeout={{enter: 1000, exit: 1000}}>
             <Switch location={location}>
                 <Route path="/" exact><Momentum /></Route>

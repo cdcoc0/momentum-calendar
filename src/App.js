@@ -8,6 +8,7 @@ const App = () => {
     <Router>
       <div style={{height: "100%"}}>
         <Background />
+        <div className="app-nav-space"></div>
         <Transition />
       </div>
     </Router>

@@ -4,13 +4,19 @@ import User from './User';
 import ClockContainer from '../containers/ClockContainer';
 import Weather from './Weather';
 import TodoContainer from '../containers/TodoContainer';
-import {MdNavigateBefore} from 'react-icons/md';
+import {RiCalendar2Fill} from 'react-icons/ri';
 import './styles/Momentum.scss';
 
 const Momentum = () => {
     return (
         <div className="Momentum page">
-            <div className="invisible-space">
+            <div className="nav-container">
+                <Link to="/calendar">
+                    <div className="moment-nav">
+                        <RiCalendar2Fill className="cal-icon" />
+                        <span className="cal-font">calendar</span>
+                    </div>
+                </Link>
             </div>
             <div className="user-todo-container">
                 <User />
@@ -19,9 +25,6 @@ const Momentum = () => {
             <div className="clock-weather-container">
                 <ClockContainer />
                 <Weather />
-            </div>
-            <div className="nav-container">
-            <Link to="/calendar"><MdNavigateBefore /></Link>
             </div>
         </div>
     );
