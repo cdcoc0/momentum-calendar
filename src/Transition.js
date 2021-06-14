@@ -11,8 +11,8 @@ const Transition = () => {
 
   const getDirection = () => {
     if(window.location.pathname !== '/') {
-      setDirection('slideToLeft');
-    } else { setDirection('slideToRight'); }
+      setDirection('slideToRight');
+    } else { setDirection('slideToLeft'); }
   }
 
   useEffect(() => {
