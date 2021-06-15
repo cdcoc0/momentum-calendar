@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { authService, firebaseInstance } from '../fbconfig';
+import './SignIn.scss';
 
 const SignIn = () => {
     const [signValue, setSignValue] = useState({
@@ -8,7 +9,7 @@ const SignIn = () => {
     });
     const {email, password} = signValue;
 
-    const [newAccount, setNewAccount] = useState(true);
+    const [newAccount, setNewAccount] = useState(false);
     const[error, setError] = useState('');
 
     const onChange= (e) => {
@@ -39,14 +40,34 @@ const SignIn = () => {
     }
 
     return (
-        <div>
-            <form onSubmit={onSignIn}>
-                <input name="email" type="text" placeholder="ID" value={email} onChange={onChange} required />
-                <input name="password" type="password" placeholder="Password" value={password} onChange={onChange} required />
-                <input type="submit" value={newAccount ? "Create account" : "Sign in"} />
-                {error}
-            </form>
-            <span onClick={toggleAccount}>{newAccount ? "sign in" : "create account" }</span>
+        <div className="Signin">
+            {newAccount ? 
+                (
+                    <div className="sign-container">
+                    <span className="sign-text">Sign up</span>
+                        <form className="sign-form" onSubmit={onSignIn}>
+                            <input className="email" name="email" type="text" placeholder="ID" value={email} onChange={onChange} required />
+                            <input className="password" name="password" type="password" placeholder="Password" value={password} onChange={onChange} required />
+                            <input className="submit-btn" type="submit" value={newAccount ? "Create account" : "Sign in"} />
+                            {error}
+                        </form>
+                        <span onClick={toggleAccount}>sign in</span>
+                    </div>
+                ) : (
+                    <div className="sign-container">
+                        
+                            <form className="sign-form" onSubmit={onSignIn}>
+                                <span className="sign-text">Sign in</span>
+                                <input className="email" name="email" type="text" placeholder="ID" value={email} onChange={onChange} required />
+                                <input className="password" name="password" type="password" placeholder="Password" value={password} onChange={onChange} required />
+                                <input className="submit-btn" type="submit" value={newAccount ? "Create account" : "Sign in"} />
+                                {error}
+                            </form>
+                            <div className="toggle-box">Not registered?<span className="toggle-btn" onClick={toggleAccount}>create account</span></div>
+                    </div>
+                )
+            }
+            
         </div>
     );
 }
