@@ -4,7 +4,7 @@ import todos from './todos';
 
 const rootReducer = combineReducers({
     dateInfo,
-    todos
+    todos,
 })
 
 export default rootReducer;

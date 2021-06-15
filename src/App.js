@@ -41,7 +41,7 @@ const App = () => {
         <Background />
         {
           init ? (isLoggedIn ? 
-            <Transition userObj={userObj} refreshUser={refreshUser} /> : <Route exact path="/"><SignIn /></Route>) : <div type="text" style={{color: "white"}}>Loading...</div>
+            <Transition userObj={userObj} refreshUser={refreshUser} /> : <Route exact path="/"><SignIn refreshUser={refreshUser} /></Route>) : <div type="text" style={{color: "white"}}>Loading...</div>
         }
       </div>
     </Router>

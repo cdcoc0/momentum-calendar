@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { authService, firebaseInstance } from '../fbconfig';
 import './SignIn.scss';
 
-const SignIn = () => {
+const SignIn = ({refreshUser}) => {
     const [signValue, setSignValue] = useState({
         email: 'welcometokirri@naver.com',
         password: '189674340^^',
@@ -28,6 +28,7 @@ const SignIn = () => {
                 await authService.currentUser.updateProfile({
                     displayName: username
                 })
+                refreshUser();
             } else {
                 await authService.setPersistence(firebaseInstance.auth.Auth.Persistence.SESSION);
                 await authService.signInWithEmailAndPassword(email, password);
