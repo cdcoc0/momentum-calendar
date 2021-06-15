@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Background from './Background';
 import Transition from './Transition';
 import SignIn from './auth/SignIn';
@@ -7,7 +7,7 @@ import { authService } from './fbconfig';
 
 const App = () => {
   const [init, setInit] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
@@ -17,6 +17,7 @@ const App = () => {
         setIsLoggedIn(false);
       }
       setInit(true);
+      console.log(authService.currentUser)
     })
   }, [])
 

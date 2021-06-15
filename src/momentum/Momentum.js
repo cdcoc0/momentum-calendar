@@ -5,8 +5,10 @@ import ClockContainer from '../containers/ClockContainer';
 import Weather from './Weather';
 import TodoContainer from '../containers/TodoContainer';
 import {RiCalendar2Fill} from 'react-icons/ri';
-import './styles/Momentum.scss';
+import {FiLogOut} from 'react-icons/fi';
+import {ImPencil} from 'react-icons/im';
 import { authService } from '../fbconfig';
+import './styles/Momentum.scss';
 
 const Momentum = () => {
     const onLogOutClick = () => {
@@ -22,7 +24,10 @@ const Momentum = () => {
                         <span className="cal-font">calendar</span>
                     </div>
                 </Link>
-                <div><button onClick={onLogOutClick}>Logout</button></div>
+                <div className="btn">
+                    <div title="Edit Name" className="re-write"><ImPencil /></div>
+                    <div title="Log out" className="logout" onClick={onLogOutClick}><FiLogOut /></div>
+                </div>
             </div>
             <div className="user-todo-container">
                 <User />
