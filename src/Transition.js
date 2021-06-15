@@ -17,7 +17,6 @@ const Transition = () => {
 
   useEffect(() => {
     getDirection();
-    console.log(direction, window.location.pathname);
   }, [direction, location])
 
   return (

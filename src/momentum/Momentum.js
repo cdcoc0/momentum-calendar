@@ -6,8 +6,13 @@ import Weather from './Weather';
 import TodoContainer from '../containers/TodoContainer';
 import {RiCalendar2Fill} from 'react-icons/ri';
 import './styles/Momentum.scss';
+import { authService } from '../fbconfig';
 
 const Momentum = () => {
+    const onLogOutClick = () => {
+        authService.signOut();
+    }
+
     return (
         <div className="Momentum page">
             <div className="nav-container">
@@ -17,6 +22,7 @@ const Momentum = () => {
                         <span className="cal-font">calendar</span>
                     </div>
                 </Link>
+                <div><button onClick={onLogOutClick}>Logout</button></div>
             </div>
             <div className="user-todo-container">
                 <User />
