@@ -5,7 +5,7 @@ import Momentum from './momentum/Momentum';
 import Calendar from './calendar/Calendar';
 import './Transition.scss';
 
-const Transition = () => {
+const Transition = ({userObj, refreshUser}) => {
   const [direction, setDirection] = useState('slideToLeft')
   const location = useLocation();
 
@@ -24,8 +24,8 @@ const Transition = () => {
         <CSSTransition key={location.pathname}
                         classNames={direction} timeout={{enter: 1000, exit: 1000}}>
             <Switch location={location}>
-                <Route path="/" exact><Momentum /></Route>
-                <Route path="/calendar" exact><Calendar /></Route>
+                <Route path="/" exact><Momentum userObj={userObj} refreshUser={refreshUser} /></Route>
+                <Route path="/calendar" exact><Calendar userObj={userObj} /></Route>
             </Switch>
         </CSSTransition>
       </TransitionGroup>

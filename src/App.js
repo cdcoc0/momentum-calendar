@@ -8,18 +8,32 @@ import { authService } from './fbconfig';
 const App = () => {
   const [init, setInit] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userObj, setUserObj] = useState(null);
 
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if(user) {
+        setUserObj({
+          uid: user.uid,
+          displayName: user.displayName,
+          updateProfile: args => user.updateProfile(args)
+        });
         setIsLoggedIn(true);
       } else {
         setIsLoggedIn(false);
       }
       setInit(true);
-      console.log(authService.currentUser)
     })
   }, [])
+
+  const refreshUser = () => {
+    const user = authService.currentUser;
+    setUserObj({
+      displayName: user.displayName,
+      uid: user.uid,
+      updateProfile: (args) => user.updateProfile(args),
+    });
+  };
 
   return (
     <Router>
@@ -27,7 +41,7 @@ const App = () => {
         <Background />
         {
           init ? (isLoggedIn ? 
-            <Transition /> : <Route exact path="/"><SignIn /></Route>) : <div type="text" style={{color: "white"}}>Loading...</div>
+            <Transition userObj={userObj} refreshUser={refreshUser} /> : <Route exact path="/"><SignIn /></Route>) : <div type="text" style={{color: "white"}}>Loading...</div>
         }
       </div>
     </Router>

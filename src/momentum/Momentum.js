@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import User from './User';
 import ClockContainer from '../containers/ClockContainer';
@@ -10,7 +10,12 @@ import {ImPencil} from 'react-icons/im';
 import { authService } from '../fbconfig';
 import './styles/Momentum.scss';
 
-const Momentum = () => {
+const Momentum = ({userObj, refreshUser}) => {
+    const [userUpdate, setUserUpdate] = useState(false);
+    const onClick = () => {
+        setUserUpdate(prev => !prev);
+    };
+
     const onLogOutClick = () => {
         authService.signOut();
     }
@@ -25,13 +30,13 @@ const Momentum = () => {
                     </div>
                 </Link>
                 <div className="btn">
-                    <div title="Edit Name" className="re-write"><ImPencil /></div>
+                    <div title="Edit Name" className="re-write" onClick={onClick}><ImPencil /></div>
                     <div title="Log out" className="logout" onClick={onLogOutClick}><FiLogOut /></div>
                 </div>
             </div>
             <div className="user-todo-container">
-                <User />
-                <TodoContainer />
+                <User userObj={userObj} refreshUser={refreshUser} userUpdate={userUpdate} />
+                <TodoContainer userObj={userObj} />
             </div>
             <div className="clock-weather-container">
                 <ClockContainer />

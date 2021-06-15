@@ -4,10 +4,11 @@ import './SignIn.scss';
 
 const SignIn = () => {
     const [signValue, setSignValue] = useState({
-        email: '',
-        password: ''
+        email: 'welcometokirri@naver.com',
+        password: '189674340^^',
+        username: ''
     });
-    const {email, password} = signValue;
+    const {email, password, username} = signValue;
 
     const [newAccount, setNewAccount] = useState(false);
     const[error, setError] = useState('');
@@ -23,7 +24,10 @@ const SignIn = () => {
         e.preventDefault();
         try {
             if(newAccount) {
-                await authService.createUserWithEmailAndPassword(email, password)
+                await authService.createUserWithEmailAndPassword(email, password);
+                await authService.currentUser.updateProfile({
+                    displayName: username
+                })
             } else {
                 await authService.setPersistence(firebaseInstance.auth.Auth.Persistence.SESSION);
                 await authService.signInWithEmailAndPassword(email, password);
@@ -37,21 +41,27 @@ const SignIn = () => {
 
     const toggleAccount = () => {
         setNewAccount((prev) => !prev);
+        setSignValue({
+            email: '',
+            password: '',
+            username: ''
+        })
     }
 
     return (
         <div className="Signin">
             {newAccount ? 
                 (
-                    <div className="sign-container">
-                    <span className="sign-text">Sign up</span>
+                    <div className="sign-container signup">
                         <form className="sign-form" onSubmit={onSignIn}>
+                            <span className="sign-text">Sign up</span>
                             <input className="email" name="email" type="text" placeholder="ID" value={email} onChange={onChange} required />
                             <input className="password" name="password" type="password" placeholder="Password" value={password} onChange={onChange} required />
-                            <input className="submit-btn" type="submit" value={newAccount ? "Create account" : "Sign in"} />
+                            <input className="password" name="username" type="text" placeholder="Name" onChange={onChange} value={username} required />
+                            <input className="submit-btn" type="submit" value="Create account" />
                             {error}
                         </form>
-                        <span onClick={toggleAccount}>sign in</span>
+                        <div className="toggle-box">Already registered?<span className="toggle-btn" onClick={toggleAccount}>sign in</span></div>
                     </div>
                 ) : (
                     <div className="sign-container">
@@ -60,7 +70,7 @@ const SignIn = () => {
                                 <span className="sign-text">Sign in</span>
                                 <input className="email" name="email" type="text" placeholder="ID" value={email} onChange={onChange} required />
                                 <input className="password" name="password" type="password" placeholder="Password" value={password} onChange={onChange} required />
-                                <input className="submit-btn" type="submit" value={newAccount ? "Create account" : "Sign in"} />
+                                <input className="submit-btn" type="submit" value="Sign in" />
                                 {error}
                             </form>
                             <div className="toggle-box">Not registered?<span className="toggle-btn" onClick={toggleAccount}>create account</span></div>

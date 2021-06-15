@@ -1,13 +1,10 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
+import { authService } from '../fbconfig';
 import {MdSubdirectoryArrowLeft} from 'react-icons/md';
 import './styles/User.scss';
-//#B367FF
 
-const User = () => {   
-    const USER_KEY = "User"; 
-    const USER_VAL = localStorage.getItem(USER_KEY);
-    const [userInput, setUserInput] = useState('');
-    const [user, setUser] = useState(USER_VAL);
+const User = ({userObj, refreshUser, userUpdate}) => {   
+    const [userInput, setUserInput] = useState(userObj.displayName ? userObj.displayName : '');
 
     const onUserChange = useCallback (
         e => {
@@ -15,20 +12,16 @@ const User = () => {
             }, []);
 
     const onUserSubmit = useCallback (
-        (e) => {
+        async (e) => {
             e.preventDefault();
-            localStorage.setItem(USER_KEY, userInput);
-            setUser(userInput);
-            //setUserInput('');
-            }, [userInput]);
+            await authService.currentUser.updateProfile({
+                displayName: userInput
+            });
+            refreshUser();
+            }, [userInput, refreshUser]);
 
-    const getUser = useCallback(() => {
-        const userInit = localStorage.getItem(USER_KEY);
-        if(userInit === null) {
-            localStorage.setItem(USER_KEY, '');
-            setUser('');
-        };
-        if(user === '') {
+    const getUser = useCallback(()=> {
+        if(!userObj.displayName || userUpdate) {
             return (
                 <form className="user-form" onSubmit={onUserSubmit}>
                     <input className="user-input" type="text" placeholder="Name" 
@@ -40,10 +33,24 @@ const User = () => {
         return (
             <div className="user-greeting">
                 <div className="welcome">Good Day</div>
-                <div className="name">{`${user}`}</div>
+                <div className="name">{userObj.displayName}</div>
             </div>
         );
-    }, [onUserChange, onUserSubmit, user, userInput])
+    }, [onUserChange, onUserSubmit, userInput, userObj, userUpdate])
+    // useEffect(() => {
+    //     const getDisPlayName = async () => {
+    //         if(userObj.displayName.indexOf('@') !== -1) {
+    //             const index = userObj.displayName.indexOf('@');
+    //             const update = userObj.displayName.slice(0, index);
+    //             console.log(update);
+    //             await userObj.updateProfile({
+    //                 displayName: update
+    //             });
+    //             console.log(userObj.displayName)
+    //         }
+    //     }
+    //     getDisPlayName()
+    // }, [])
 
     return (
         <div className="User">
