@@ -18,17 +18,12 @@ const Weather = () => {
                 temperature: Math.floor(json.main.temp),
                 description: json.weather[0].main
             };
-            console.log(json);
             setWeather({
                 place: result.place,
                 temperature: result.temperature,
                 description: result.description
             });
         });
-    }, []);
-    
-    const saveCoords = useCallback(coordsObj => {
-        localStorage.setItem("COORDS", JSON.stringify(coordsObj));
     }, []);
     
     const geoSuccess = useCallback(position => {
@@ -38,9 +33,8 @@ const Weather = () => {
             latitude,
             longitude
         };
-        saveCoords(coordsObj);
         getWeather(latitude, longitude);
-    }, [getWeather, saveCoords]);
+    }, [getWeather]);
     
     const geoErr = useCallback(() => {
         console.log("geolocation error");
