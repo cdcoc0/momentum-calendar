@@ -19,8 +19,8 @@ const mapDispatchToProps = dispatch => ({
     changeTodoInput: input => {
         dispatch(changeTodoInput(input))
     },
-    postTodo: (text, year, month, initDate) => {
-        dispatch(postTodo(text, year, month, initDate))
+    postTodo: (text, year, month, initDate, creatorId) => {
+        dispatch(postTodo(text, year, month, initDate, creatorId))
     },
     toggleTodo: (id, done) => {
         dispatch(toggleTodo(id, done))

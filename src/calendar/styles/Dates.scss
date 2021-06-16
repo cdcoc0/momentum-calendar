@@ -5,6 +5,7 @@
     flex-wrap: wrap;
     margin-top: 1.5rem;
     height: 512px;
+    overflow-y: hidden;
     //height: 100%;
     .dateBlock {
         width: calc(100% / 7);
@@ -47,26 +48,17 @@
                 font-family: 'Century Gothic', sans-serif;
                 font-size: 1rem;
                 //font-weight: lighter;
-                &.red {
+                &.spring {
+                    background-color: #fab1a0;
+                }
+                &.summer {
+                    background-color: #78e08f;
+                }
+                &.autumn {
                     background-color: #ff6b51;
                 }
-                &.orange {
-                    background-color: #FFC312;
-                }
-                &.yellow {
-                    background-color: #C4E538;
-                }
-                &.green {
-                    background-color: #1dd1a1;
-                }
-                &.blue {
-                    background-color: #70a1ff;
-                }
-                &.navy {
-                    background-color: #a29bfe;
-                }
-                &.purple {
-                    background-color: #D6A2E8;
+                &.winter {
+                    background-color: #52198b;
                 }
 
             }

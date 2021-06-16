@@ -3,7 +3,7 @@ import { dbService } from '../fbconfig';
 import ModalItem from './ModalItem';
 import './styles/Modal.scss';
 
-const Modal = ({today, open, close, input, deleteTodo, changeTodoInput, toggleTodo, postTodo}) => {
+const Modal = ({today, open, close, input, deleteTodo, changeTodoInput, toggleTodo, postTodo, userObj}) => {
     const [load, setLoad] = useState([]);
 
     const onChange = useCallback(e => {
@@ -11,8 +11,8 @@ const Modal = ({today, open, close, input, deleteTodo, changeTodoInput, toggleTo
     }, [changeTodoInput]);
 
     const onInsert = useCallback(() => {
-        postTodo(input, today.year, today.month, today.date)
-    }, [input, today, postTodo]);
+        postTodo(input, today.year, today.month, today.date, userObj.uid)
+    }, [input, today, postTodo, userObj]);
 
     const onSubmit = useCallback(e => {
         e.preventDefault();
@@ -30,7 +30,8 @@ const Modal = ({today, open, close, input, deleteTodo, changeTodoInput, toggleTo
     }, [toggleTodo])
 
     useEffect(() => {
-        dbService.collection("kirri").where("todo.dates.year", "==", today.year)
+        dbService.collection("kirri").where("todo.creatorId", "==", userObj.uid)
+                                        .where("todo.dates.year", "==", today.year)
                                         .where("todo.dates.month", "==", today.month)
                                         .where("todo.dates.date", "==", today.date)
                                         .orderBy("todo.timestamp", "asc")
@@ -41,7 +42,7 @@ const Modal = ({today, open, close, input, deleteTodo, changeTodoInput, toggleTo
             }));
             setLoad(getArray);
         });
-    }, [today])
+    }, [today, userObj])
     return (
         <div className={`Modal ${open ? 'openModal' : null}`}>
             {open && (

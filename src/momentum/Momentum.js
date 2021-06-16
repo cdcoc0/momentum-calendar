@@ -35,7 +35,7 @@ const Momentum = ({userObj, refreshUser}) => {
                 </div>
             </div>
             <div className="user-todo-container">
-                <User userObj={userObj} refreshUser={refreshUser} userUpdate={userUpdate} />
+                <User userObj={userObj} refreshUser={refreshUser} userUpdate={userUpdate} chUserUpdate={onClick} />
                 <TodoContainer userObj={userObj} />
             </div>
             <div className="clock-weather-container">

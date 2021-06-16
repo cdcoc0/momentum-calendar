@@ -6,8 +6,8 @@ import './styles/TodoTemplate.scss';
 const TodoTemplate = ({userObj, input, onChangeInput, postTodo, toggleTodo, removeTodo, initializeDate}) => {
     const {year, month, date} = initializeDate;
     const onInsert = useCallback(() => {
-        postTodo(input, year, month, date);
-    }, [input, year, month, date, postTodo]);
+        postTodo(input, year, month, date, userObj.uid);
+    }, [input, year, month, date, postTodo, userObj]);
 
     const onRemove = useCallback(id => {
             removeTodo(id);
@@ -23,7 +23,7 @@ const TodoTemplate = ({userObj, input, onChangeInput, postTodo, toggleTodo, remo
             userObj.displayName && 
                 <div className="TodoTemplate">
                 <TodoInsert onInsert={onInsert} input={input} onChangeInput={onChangeInput} />
-                <TodoList onRemove={onRemove} onToggle={onToggle} year={year} month={month} date={date} />
+                <TodoList onRemove={onRemove} onToggle={onToggle} year={year} month={month} date={date} userObj={userObj} />
             </div>
         )}
         </>

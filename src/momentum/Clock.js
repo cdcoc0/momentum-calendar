@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import dayjs from 'dayjs';
 import './styles/Clock.scss'
 
-const Clock = ({month, date}) => {
+const Clock = ({initializeDate}) => {
+    const {month, date} = initializeDate;
     const [time, setTime] = useState({
         date: new Date()
     });

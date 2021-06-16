@@ -10,7 +10,7 @@ export const changeTodoInput = input => ({
     input
 });
 
-export const postTodo = (text, year, month, date) => ({
+export const postTodo = (text, year, month, date, creatorId) => ({
     type: POST_TODO,
     todo: {
         text,
@@ -20,6 +20,7 @@ export const postTodo = (text, year, month, date) => ({
             month,
             date
         },
+        creatorId,
         timestamp: firebaseInstance.firestore.FieldValue.serverTimestamp(),
     }
 });

@@ -16,11 +16,9 @@ const getNextDates = (tlDay, next) => {
     }
 };
 
-const Dates = ({year, month, initDate, prevLast, thisLast, today, onDateClick, openModal}) => {
+const Dates = ({year, month, initDate, prevLast, thisLast, today, onDateClick, openModal, userObj}) => {
     const [page, setPage] = useState([]);
     const [load, setLoad] = useState();
-    const [num, setNum] = useState([]);
-    const [text, setText] = useState([])
 
     const getPage = useCallback(() => {
         const plDate = prevLast.getDate();
@@ -35,31 +33,9 @@ const Dates = ({year, month, initDate, prevLast, thisLast, today, onDateClick, o
         setPage(prev.concat(current, next));
     }, [prevLast, thisLast]);
 
-        // load.map(l => {
-        //     for(let i = 1; i <= 31; i++) {
-        //         if(l.todo.dates.date === i) {
-        //             array.push(i);
-        //         };
-        //     };
-        // });
-        // for(let i = 0; i < array.length; i++) {
-        //     if(array[i] !== 'more') {
-        //         for(let j = array.length; j > i; j--) {
-        //             if(array[i] === array[j]) {
-        //                 array.splice(j, 1);
-        //             }
-        //         }
-        //     }
-            
-            //얘좀 어케좀 해봐라..
-            //if(array[i] === array[i - 1]) { array[i] = 'more' }
-            //그냥 오늘 할일 다 state에 넣고 length
-        //}
-        // setNum(array);
-    // }, [year, month])
-    
     useEffect(() => {
-        dbService.collection("kirri").where("todo.dates.year", "==", year)
+        dbService.collection("kirri").where("todo.creatorId", "==", userObj.uid)
+                .where("todo.dates.year", "==", year)
                 .where("todo.dates.month", "==", month)
                 .orderBy("todo.dates.date", "asc")
                 .orderBy("todo.timestamp", "asc")
@@ -71,7 +47,7 @@ const Dates = ({year, month, initDate, prevLast, thisLast, today, onDateClick, o
             setLoad(getArray);
         });
         getPage();
-    }, [year, month, initDate, getPage]);
+    }, [year, month, initDate, getPage, userObj]);
 
     // const todoCalendar = useCallback(() => {
     //     let todoArray = []
@@ -97,8 +73,8 @@ const Dates = ({year, month, initDate, prevLast, thisLast, today, onDateClick, o
                         onDoubleClick={openModal}>
                             {p}
                             {load && load.map(l => l.todo.dates.month === month && l.todo.dates.date === p ? 
-                                <div key={l.id} className={`todo ${p % 7 === 1 ? 'red' : p % 7 === 2 ? 'orange' : p % 7 === 3 ? 'yellow' :
-                                                                        p % 7 === 4 ? 'green' : p % 7 === 5 ? 'blue' : p % 7 === 6 ? 'navy' : 'purple'}`} 
+                                <div key={l.id} className={`todo ${month === 2 || month === 3 || month === 4 ? "spring" : month === 5 || month === 6 || month === 7 ? "summer" :
+                                                                        month === 8 || month === 9 || month === 10 ? "autumn" : "winter"}`} 
                                 type="text">
                                     {`${l.todo.text.length > 8 ? `${l.todo.text.slice(0, 8)} ...` : l.todo.text}`}
                                 </div> 

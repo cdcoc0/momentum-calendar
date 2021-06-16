@@ -3,11 +3,11 @@ import {connect} from 'react-redux';
 import{onDateClick} from '../modules/dateInfo';
 import Dates from '../calendar/Dates';
 
-const DatesContainer = ({year, month, initDate, prevLast, thisLast, today, onDateClick, openModal}) => {
+const DatesContainer = ({year, month, initDate, prevLast, thisLast, today, onDateClick, openModal, userObj}) => {
     return (
         <Dates year={year} month={month} initDate={initDate} 
             prevLast={prevLast} thisLast={thisLast} today={today} onDateClick={onDateClick}
-            openModal={openModal} />
+            openModal={openModal} userObj={userObj} />
     );
 };
 

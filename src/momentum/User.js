@@ -3,8 +3,8 @@ import { authService } from '../fbconfig';
 import {MdSubdirectoryArrowLeft} from 'react-icons/md';
 import './styles/User.scss';
 
-const User = ({userObj, refreshUser, userUpdate}) => {   
-    const [userInput, setUserInput] = useState(userObj.displayName);
+const User = ({userObj, refreshUser, userUpdate, chUserUpdate}) => {   
+    const [userInput, setUserInput] = useState(userObj.displayName ? userObj.displayName : '');
 
     const onUserChange = useCallback (
         e => {
@@ -18,11 +18,12 @@ const User = ({userObj, refreshUser, userUpdate}) => {
                 displayName: userInput
             });
             refreshUser();
-    }, [userInput, refreshUser]);
+            chUserUpdate();
+    }, [userInput, refreshUser, chUserUpdate]);
 
     useEffect(() => {
         setUserInput(userObj.displayName)
-    }, [userUpdate])
+    }, [userUpdate, userObj])
     
 
     const getUser = useCallback(()=> {

@@ -7,7 +7,7 @@ import ModalContainer from '../containers/ModalContainer';
 import {TiArrowBack} from 'react-icons/ti';
 import './styles/Calendar.scss';
 
-const Calendar = () => {
+const Calendar = ({userObj}) => {
     const daysArray = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const [modalCtrl, setModalCtrl] = useState(false);
 
@@ -24,7 +24,7 @@ const Calendar = () => {
             <Background />
             <MonthContainer />
             <div className="navSpace">
-                <div clasSName="navC-container">
+                <div className="navC-container">
                     <Link to="/">
                         <div className="nav">
                             <TiArrowBack className="moment-icon" />
@@ -36,10 +36,10 @@ const Calendar = () => {
                     <div className="daysArray">
                         {daysArray.map(d => <div key={d} className="days">{d}</div>)}
                     </div>
-                    <DatesContainer openModal={openModal} />
+                    <DatesContainer openModal={openModal} userObj={userObj} />
                 </div>
             </div>
-            <ModalContainer open={modalCtrl} close={closeModal} />
+            <ModalContainer open={modalCtrl} close={closeModal} userObj={userObj} />
         </div>
     );
 }

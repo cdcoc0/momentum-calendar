@@ -2,15 +2,14 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Clock from '../momentum/Clock';
 
-const ClockContainer = ({month, initDate}) => {
+const ClockContainer = ({initializeDate}) => {
     return (
-        <Clock month={month} date={initDate} />
+        <Clock initializeDate={initializeDate} />
     );
 }
 
 const mapStateToProps = state => ({
-    month: state.dateInfo.month,
-    initDate: state.dateInfo.initDate
+    initializeDate: state.dateInfo.initializeDate
 });
 
 export default connect(

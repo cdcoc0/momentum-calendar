@@ -9,10 +9,11 @@ const ListContainer = styled.div`
     overflow-y: auto;
 `
 
-const TodoList = ({onRemove, onToggle, year, month, date}) => {
+const TodoList = ({onRemove, onToggle, year, month, date, userObj}) => {
     const [load, setLoad] = useState([]);
     useEffect(() => {
-        dbService.collection("kirri").where("todo.dates.year", "==", year)
+        dbService.collection("kirri").where("todo.creatorId", "==", userObj.uid)
+                                        .where("todo.dates.year", "==", year)
                                         .where("todo.dates.month", "==", month)
                                         .where("todo.dates.date", "==", date)
                                         .orderBy("todo.timestamp", "asc")
