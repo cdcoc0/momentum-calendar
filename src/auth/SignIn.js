@@ -59,8 +59,8 @@ const SignIn = ({refreshUser}) => {
                             <input className="password" name="password" type="password" placeholder="Password" value={password} onChange={onChange} required />
                             <input className="password" name="username" type="text" placeholder="Name" onChange={onChange} value={username} required />
                             <input className="submit-btn" type="submit" value="Create account" />
-                            {error}
                         </form>
+                        <div className="error">{error}</div>
                         <div className="toggle-box">Already registered?<span className="toggle-btn" onClick={toggleAccount}>sign in</span></div>
                     </div>
                 ) : (
@@ -71,8 +71,8 @@ const SignIn = ({refreshUser}) => {
                                 <input className="email" name="email" type="text" placeholder="ID" value={email} onChange={onChange} required />
                                 <input className="password" name="password" type="password" placeholder="Password" value={password} onChange={onChange} required />
                                 <input className="submit-btn" type="submit" value="Sign in" />
-                                {error}
                             </form>
+                            <div className="error">{error}</div>
                             <div className="toggle-box">Not registered?<span className="toggle-btn" onClick={toggleAccount}>create account</span></div>
                     </div>
                 )

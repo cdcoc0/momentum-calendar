@@ -18,15 +18,10 @@ const TodoTemplate = ({userObj, input, onChangeInput, postTodo, toggleTodo, remo
     }, [toggleTodo]);
     
     return (
-        <>
-        {(
-            userObj.displayName && 
-                <div className="TodoTemplate">
-                <TodoInsert onInsert={onInsert} input={input} onChangeInput={onChangeInput} />
-                <TodoList onRemove={onRemove} onToggle={onToggle} year={year} month={month} date={date} userObj={userObj} />
-            </div>
-        )}
-        </>
+        <div className="TodoTemplate">
+            <TodoInsert onInsert={onInsert} input={input} onChangeInput={onChangeInput} />
+            <TodoList onRemove={onRemove} onToggle={onToggle} year={year} month={month} date={date} userObj={userObj} />
+        </div>
     );
 }
 
