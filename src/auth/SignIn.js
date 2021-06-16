@@ -32,7 +32,6 @@ const SignIn = ({refreshUser}) => {
             } else {
                 await authService.setPersistence(firebaseInstance.auth.Auth.Persistence.SESSION);
                 await authService.signInWithEmailAndPassword(email, password);
-                //setPersistance - default: local, session으로 바꾸기
             }
         } catch(e) {
             setError(e.message);

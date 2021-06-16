@@ -4,7 +4,7 @@ import {MdSubdirectoryArrowLeft} from 'react-icons/md';
 import './styles/User.scss';
 
 const User = ({userObj, refreshUser, userUpdate}) => {   
-    const [userInput, setUserInput] = useState(userObj.displayName ? userObj.displayName : '');
+    const [userInput, setUserInput] = useState(userObj.displayName);
 
     const onUserChange = useCallback (
         e => {
@@ -18,13 +18,18 @@ const User = ({userObj, refreshUser, userUpdate}) => {
                 displayName: userInput
             });
             refreshUser();
-            }, [userInput, refreshUser]);
+    }, [userInput, refreshUser]);
+
+    useEffect(() => {
+        setUserInput(userObj.displayName)
+    }, [userUpdate])
+    
 
     const getUser = useCallback(()=> {
         if(!userObj.displayName || userUpdate) {
             return (
                 <form className="user-form" onSubmit={onUserSubmit}>
-                    <input className="user-input" type="text" placeholder="Name" 
+                    <input className="user-input" type="text" placeholder="Display Name" 
                     value={userInput} onChange={onUserChange} />
                     <button className="user-btn" type="submit"><MdSubdirectoryArrowLeft /></button>
                 </form>
@@ -37,20 +42,6 @@ const User = ({userObj, refreshUser, userUpdate}) => {
             </div>
         );
     }, [onUserChange, onUserSubmit, userInput, userObj, userUpdate])
-    // useEffect(() => {
-    //     const getDisPlayName = async () => {
-    //         if(userObj.displayName.indexOf('@') !== -1) {
-    //             const index = userObj.displayName.indexOf('@');
-    //             const update = userObj.displayName.slice(0, index);
-    //             console.log(update);
-    //             await userObj.updateProfile({
-    //                 displayName: update
-    //             });
-    //             console.log(userObj.displayName)
-    //         }
-    //     }
-    //     getDisPlayName()
-    // }, [])
 
     return (
         <div className="User">

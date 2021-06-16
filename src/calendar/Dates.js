@@ -97,12 +97,13 @@ const Dates = ({year, month, initDate, prevLast, thisLast, today, onDateClick, o
                         onDoubleClick={openModal}>
                             {p}
                             {load && load.map(l => l.todo.dates.month === month && l.todo.dates.date === p ? 
-                                <div key={l.id} className="todo" type="text">{`${l.todo.text.length > 8 ? 
-                                    `${l.todo.text.slice(0, 8)} ...` : l.todo.text}`}</div> : null)}
-                                {/* 일별 todo를 state에 담아야 해 일단 */}
-                            {/* {p === initDate && year === today.year && month ===today.month && 
-                            todos.length !== 0 ? <div className="todo" type="text">{`${todos[0].todo.text}`}</div> : null} */}
-                            
+                                <div key={l.id} className={`todo ${p % 7 === 1 ? 'red' : p % 7 === 2 ? 'orange' : p % 7 === 3 ? 'yellow' :
+                                                                        p % 7 === 4 ? 'green' : p % 7 === 5 ? 'blue' : p % 7 === 6 ? 'navy' : 'purple'}`} 
+                                type="text">
+                                    {`${l.todo.text.length > 8 ? `${l.todo.text.slice(0, 8)} ...` : l.todo.text}`}
+                                </div> 
+                                : null
+                            )}
                         </div>
                     </div>
                 );
