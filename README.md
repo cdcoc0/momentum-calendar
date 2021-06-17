@@ -1,5 +1,7 @@
 # 📅 Momentum-Calendar App
 
+**🎤 Intro**
+
 클론코딩으로 만들었던 바닐라 자바스크립트 기반의 크롭 웹 어플리케이션 'Momentum'과, 라이브러리 없이 Date 객체로 구현한 Calendar를 연결시켜 완성한 첫 번째 리액트 프로젝트입니다. 효율적이고 잘 짜여진 코드라고는 할 수 없지만, 지금까지 공부한 내용을 복습하면서 state, props, redux 등 리액트의 기본적인 기능을 익힐 수 있었습니다. 단순히 책이나 영상을 보고 따라하기보다는, 스스로 고민하며 문제를 해결하고 코딩할 수 있는 경험이었습니다.
 <br />
 
@@ -18,10 +20,10 @@ My first React project which is a combination of previous [Vanilla JS clone proj
   <img width="800" height="400" src="https://user-images.githubusercontent.com/61813428/122351928-9a3b9f80-cf89-11eb-851a-9924c0c8a051.png">
 </div>
 <div>
-  <img width="800" height="400" src="https://user-images.githubusercontent.com/61813428/122351983-a4f63480-cf89-11eb-807f-ba3e16bd24c7.png">
+  <img width="800" height="400" src="https://user-images.githubusercontent.com/61813428/122351948-9e67bd00-cf89-11eb-8177-b93df390121e.png">
 </div>
 <div>
-  <img width="800" height="400" src="https://user-images.githubusercontent.com/61813428/122351948-9e67bd00-cf89-11eb-8177-b93df390121e.png">
+  <img width="800" height="400" src="https://user-images.githubusercontent.com/61813428/122351983-a4f63480-cf89-11eb-807f-ba3e16bd24c7.png">
 </div>
 <br /><br />
 
