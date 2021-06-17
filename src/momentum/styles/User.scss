@@ -1,3 +1,9 @@
+$default-color: #c890ff;
+@mixin initialize() {
+    background: none;
+    outline: none;
+    border: none;
+}
 .User {
     width: 950px;
     padding: 1rem;
@@ -12,32 +18,24 @@
         justify-content: center;
         margin-top: 7rem;
         .user-input {
-            background: none;
-            outline: none;
-            border: none;
-            //width: 250px;
+            @include initialize();
             padding: 0.25rem;
             padding-left: 0.75rem;
             font-size: 1.5rem;
             color: white;
-            //background: #e2e2e2;
              border-bottom: 3px solid #e2e2e2;
             &::placeholder {
                 color: #e2e2e2;
             }
         }
         .user-btn {
-            background: none;
-            outline: none;
-            border: none;
+            @include initialize();
             display: flex;
                 svg {
-                background: none;
-                outline: none;
-                border: none;
-                border: 3px solid #c890ff;
+                @include initialize();
+                border: 3px solid $default-color;
                 font-size: 1.5rem;
-                color: #c890ff;
+                color: $default-color;
                 padding: 0.25rem;
                 margin-left: 1.5rem;
                 border-radius: 4px;

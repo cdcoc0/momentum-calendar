@@ -1,3 +1,9 @@
+@mixin initialize() {
+    background: none;
+    outline: none;
+    border: none;
+}
+
 .Header {
     margin-top: 1rem;
     display: flex;
@@ -7,8 +13,6 @@
     font-weight: bold;
     font-size: 2rem;
     justify-content: space-evenly;
-    //color: #c890ff;
-    //color: #52198b;
     color: white;
     .month {
         width: 300px;
@@ -16,16 +20,12 @@
         justify-content: center;
     }
     svg {
-        background: none;
-        outline: none;
-        border: none;
+        @include initialize();
         display: flex;
         align-items: center;
         cursor: pointer;
-        //color: #c890ff;
         &:hover {
             color: #6b2fa8;
-            //box-shadow: 1px 1px 10px rgb(228, 228, 228);
         }
     }  
 }

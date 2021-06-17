@@ -1,3 +1,9 @@
+$default-color: #c890ff;
+@mixin initialize() {
+    background: none;
+    outline: none;
+    border: none;
+}
 .Modal {
     display: none;
     position: fixed;
@@ -20,8 +26,6 @@
             font-family: verdana, sans-serif;
             background-color: white;
             border-radius: 8px;    
-            //#ff4d4d
-            //overflow: hidden;
             animation: modal-show .3s;
             header {
                 display: flex;
@@ -42,23 +46,18 @@
                 justify-content: center;
                 border-top: 1px solid #cacbcc;
                 input {
-                    background: none;
-                    outline: none;
-                    border: none;
+                    @include initialize();
                     padding-left: 1rem;
                     background: #f9f4ff;
                     font-size: 1rem;
-                    //border: 2px solid #c890ff;
                     &::placeholder {
                         color: rgb(175, 175, 175);
                         font-style: italic;
                     }
                 }
                 .insert-btn {
-                    background: none;
-                    outline: none;
-                    border: none;
-                    background-color: #c890ff;
+                    @include initialize();
+                    background-color: $default-color;
                     padding-right: 0.5rem;
                     padding-left: 0.5rem;
                     color: white;
@@ -87,13 +86,9 @@
                 border-bottom-left-radius: 8px;
                 border-bottom-right-radius: 8px;
                 .close-btn {
-                    background: none;
-                    outline: none;
-                    border: none;
+                    @include initialize();
                     flex: 1;
                     padding: 0.75rem 0;
-                    //margin-bottom: 1rem;
-                    //border: 1px solid #c890ff;
                     background: #c890ff;
                     border-bottom-left-radius: 8px;
                     border-bottom-right-radius: 8px;

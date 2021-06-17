@@ -1,28 +1,27 @@
+$default-color: #c890ff;
+@mixin initialize() {
+    background: none;
+    outline: none;
+    border: none;
+}
 .TodoInsert {
     display: flex;
     margin-bottom: 3rem;
 
     input {
-        background: none;
-        outline: none;
-        border: none;
+        @include initialize();
         padding: 0.25rem;
         padding-left: 0.75rem;
         font-size: 1rem;
         background: #e2e2e2;
         margin-left: 3rem;
-        // &::placeholder {
-        //     color: #c890ff;
-        // }
         flex: 1;
     }
 
     button {
-        background: none;
-        outline: none;
-        border: none;
+        @include initialize();
         border-radius: 4px;
-        background: #c890ff;
+        background: $default-color;
         color: white;
         padding-right: 0.5rem;
         padding-left: 0.5rem;

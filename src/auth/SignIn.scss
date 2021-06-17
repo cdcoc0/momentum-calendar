@@ -1,3 +1,16 @@
+$default-color: #c890ff;
+@mixin initialize() {
+    background: none;
+    outline: none;
+    border: none;
+}
+@mixin input-style() {
+    font-size: 1rem;
+    background: white;
+    border-radius: 20px;
+    padding: 0.5rem;
+    padding-left: 1rem;
+}
 .Signin {
     width: 100%;
     height: 100%;
@@ -21,32 +34,16 @@
                 margin-bottom: 2rem;
             }
             .email {
-                background: none;
-                outline: none;
-                border: none;
-                width: 300px;
-                font-size: 1rem;
-                background: white;
-                border-radius: 20px;
-                padding: 0.5rem;
-                padding-left: 1rem;
+                @include initialize();
+                @include input-style();
             }
             .password {
-                background: none;
-                outline: none;
-                border: none;
+                @include initialize();
+                @include input-style();
                 margin-top: 0.5em;
-                width: 300px;
-                font-size: 1rem;
-                background: white;
-                border-radius: 20px;
-                padding: 0.5rem;
-                padding-left: 1rem;
             }
             .submit-btn {
-                background: none;
-                outline: none;
-                border: none;
+                @include initialize();
                 margin-top: 1.5em;
                 width: 325px;
                 font-size: 1rem;
@@ -54,7 +51,7 @@
                 border-radius: 20px;
                 padding: 0.5rem;
                 color: white;
-                background: #c890ff;
+                background: $default-color;
                 transition: 0.1s ease-in;
                 cursor: pointer;
                 &:hover {

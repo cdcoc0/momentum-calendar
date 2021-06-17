@@ -1,13 +1,16 @@
+@mixin box() {
+    display: flex;
+    flex-direction: row-reverse;
+};
+
 .Weather {
     margin-right: 3rem;
     color: white;
     font-family: "Lucida Console", Helvetica, sans-serif;
     .location {
-        display: flex;
-        flex-direction: row-reverse;
+        @include box();
     }
     .desc {
-        display: flex;
-        flex-direction: row-reverse;
+        @include box();
     }
 }

@@ -1,3 +1,4 @@
+$default-color: #c890ff;
 .Calendar {
     z-index: 10;
     width: 100%;
@@ -10,7 +11,7 @@
         .nav {
             width: 90px;
             height: 90px;
-            background-color: #c890ff;
+            background-color: $default-color;
             display: flex;
             justify-content: center;
             margin-left: 3rem;
@@ -39,12 +40,7 @@
             padding-left: 2rem;
             padding-right: 2rem;
             flex: 1;
-            //background: #d5abffef;
-            //background-color: #e2e2e29f;
             background-color: rgb(255, 255, 255);
-            //border-top: 1px solid rgba(255, 255, 255, 0.945);
-            //border-top: 1px solid #c890ffef;
-            //border: 1px solid #c890ff;
             border-radius: 12px;
             .daysArray {
                 display: flex;
@@ -52,8 +48,7 @@
                 padding-bottom: 0.5rem;
                 font-size: 1.25rem;
                 font-weight: bold;
-                color: #c890ff;
-                //color: white;
+                color: $default-color;
                 .days {
                     width: calc(100% / 7);
                     &:nth-child(7n + 1) {
