@@ -33,8 +33,8 @@ My first React project which is a combination of previous [Vanilla JS clone proj
 [CLICK HERE🙋‍♀️](https://moment-cal-kirri.web.app/)
 <br /><br />
 
-**testID: welcometokirri@naver.com**<br />
-**testPW: 189674340^^**
+**testID:** welcometokirri@naver.com<br />
+**testPW:** 189674340^^
 <br /><br />
 
 
