@@ -2,7 +2,7 @@
 
 **🎤 Intro**
 
-클론코딩으로 만들었던 바닐라 자바스크립트 기반의 크롭 웹 어플리케이션 'Momentum'과, 라이브러리 없이 Date 객체로 구현한 Calendar를 연결시켜 완성한 첫 번째 리액트 프로젝트입니다. 효율적이고 잘 짜여진 코드라고는 할 수 없지만, 지금까지 공부한 내용을 복습하면서 state, props, redux 등 리액트의 기본적인 기능을 익힐 수 있었습니다. 단순히 책이나 영상을 보고 따라하기보다는, 스스로 고민하며 문제를 해결하고 코딩할 수 있는 경험이었습니다.
+클론코딩으로 만들었던 바닐라 자바스크립트 기반의 크롭 웹 어플리케이션 [Momentum](https://github.com/cdcoc0/momentum-react)과, 라이브러리 없이 Date 객체로 구현한 [Calendar](https://github.com/cdcoc0/calendar-react-datejs)를 연결시켜 완성한 첫 번째 리액트 프로젝트입니다. 효율적이고 잘 짜여진 코드라고는 할 수 없지만, 지금까지 공부한 내용을 복습하면서 state, props, redux 등 리액트의 기본적인 기능을 익힐 수 있었습니다. 단순히 책이나 영상을 보고 따라하기보다는, 스스로 고민하며 문제를 해결하고 코딩할 수 있는 경험이었습니다.
 <br />
 
 My first React project which is a combination of previous [Vanilla JS clone project](https://github.com/cdcoc0/momentum-react) and [calendar app](https://github.com/cdcoc0/calendar-react-datejs). It is hard to say that this project has such a efficient and well-structured codes, but I could review basic react functions I've studied such as state, props, and redux while developing the project. It was such an experience I could actually think by my self to solve the problems and to code, not just following youtube videos or books, I could be progressed during this project.
@@ -31,10 +31,10 @@ My first React project which is a combination of previous [Vanilla JS clone proj
 ## 🌎 URL
 <https://moment-cal-kirri.web.app/> <br />
 [CLICK HERE🙋‍♀️](https://moment-cal-kirri.web.app/)
-<br />
+<br /><br />
 
-testID: welcometokirri@naver.com
-testPW: test PW: 189674340^^
+**testID: welcometokirri@naver.com**<br />
+**testPW: 189674340^^**
 <br /><br />
 
 
