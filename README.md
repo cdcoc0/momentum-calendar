@@ -116,18 +116,18 @@ My first React project which is a combination of previous [Vanilla JS clone proj
 
 
 ## 🔧 What needs to be improved
-## - Create a specific plan inside the boundary I can reach
+### - Create a specific plan inside the boundary I can reach
 - 단순히 Momentum에 달력을 추가하면 좋을 것 같다는 생각에서 시작한 프로젝트였는데, 기능을 하나씩 구현할 때마다 이것도 더하고 싶고 저것도 추가했으면 좋을 것 같다는 욕심이 생겨 갈팡질팡하면서 점점 늘어져버렸습니다. 
 - 프로젝트를 통해 구현하려는 기술, 보여주고 싶은 스킬이 무엇인지를 내가 실현할 수 있는 범위 내에서 가능한 구체적으로 정한 뒤 마감 기한을 정하고 프로젝트를 시작하는 게 좋을 것 같다고 느꼈습니다.
 <br />
 
-## - NoSQL
+### - NoSQL
 - NoSQL 데이터베이스 사용은 이번이 처음이라 SQL DB의 테이블처럼 사용해보려다 한참을 해메는 등, 시행착오을 많이 겪었습니다. 사용하다 보니 무척 편리하다고는 느꼈지만 아직 부족함을 많이 느껴, 더 많은 공부가 필요하다고 생각합니다.
 <br />
 
-## - SCSS
+### - SCSS
 - SCSS의 이점을 별로 살리지 못해 일반 CSS와 다를 바가 없다는 점이 아쉽습니다. 추후 리팩토링을 통해 코드 중복을 줄이는 등 더 공부하면서 이러한 문제점을 개선해나갈 예정입니다.
 <br/>
 
-## - Responsive Web
+### - Responsive Web
 - 모바일로도 접근 가능하도록 반응형 웹으로 수정하려 합니다.
