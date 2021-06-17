@@ -11,22 +11,16 @@ const DatesContainer = ({year, month, initDate, prevLast, thisLast, today, onDat
     );
 };
 
-const mapStateToProps = state => ({
-    year: state.dateInfo.year,
-    month: state.dateInfo.month,
-    initDate: state.dateInfo.initDate,
-    prevLast: state.dateInfo.prevLast,
-    thisLast: state.dateInfo.thisLast,
-    today: state.dateInfo.today,
-});
-
-const mapDispatchToProps = dispatch => ({
-    onDateClick: p => {
-        dispatch(onDateClick(p))
-    },
-})
-
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+    state => ({
+        year: state.dateInfo.year,
+        month: state.dateInfo.month,
+        initDate: state.dateInfo.initDate,
+        prevLast: state.dateInfo.prevLast,
+        thisLast: state.dateInfo.thisLast,
+        today: state.dateInfo.today,
+    }),
+    {
+        onDateClick
+    }
 )(DatesContainer);

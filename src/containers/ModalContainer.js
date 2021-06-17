@@ -10,27 +10,16 @@ const ModalContainer = ({today, open, close, input, deleteTodo, changeTodoInput,
     );
 }
 
-const mapStateToProps = state => ({
-    today: state.dateInfo.today,
-    input: state.todos.input
-});
-
-const mapDispatchToProps = dispatch => ({
-    deleteTodo: (id) => {
-        dispatch(deleteTodo(id))
-    },
-    changeTodoInput: (input) => {
-        dispatch(changeTodoInput(input))
-    },
-    toggleTodo: (id, done) => {
-        dispatch(toggleTodo(id, done))
-    },
-    postTodo: (text, year, month, date, creatorId) => {
-        dispatch(postTodo(text, year, month, date, creatorId))
-    }
-})
-
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+    state => ({
+        today: state.dateInfo.today,
+        input: state.todos.input
+    }),
+    {
+        changeTodoInput,
+        postTodo,
+        toggleTodo,
+        deleteTodo
+        
+    }
 )(ModalContainer);

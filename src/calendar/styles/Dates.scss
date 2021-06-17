@@ -10,7 +10,6 @@
     .dateBlock {
         width: calc(100% / 7);
         //color: #8000ff;
-        //color: white;
         color: #b162ff;
         font-size: 1.25rem;
         font-weight: bold;
@@ -31,15 +30,11 @@
             height: 90px;
             overflow: hidden;
             &.today {
-                //background-color: #c890ff60;
                 box-sizing: border-box;
                 border: 1px solid #c890ffd5;
-                //border: 2px solid white;
                 border-radius: 8px;
             }
             .todo {
-                //background-color: #ffdd59;
-                //#f6e58d
                 border-radius: 4px;
                 margin-top: 0.25rem;
                 color: white;
@@ -47,19 +42,19 @@
                 padding-left: 1rem;
                 font-family: 'Century Gothic', sans-serif;
                 font-size: 1rem;
-                //font-weight: lighter;
-                &.spring {
-                    background-color: #fab1a0;
-                }
-                &.summer {
-                    background-color: #78e08f;
-                }
-                &.autumn {
-                    background-color: #ff6b51;
-                }
-                &.winter {
-                    background-color: #52198b;
-                }
+                background-color: #52198b;
+                // &.spring {
+                //     background-color: #fab1a0;
+                // }
+                // &.summer {
+                //     background-color: #78e08f;
+                // }
+                // &.autumn {
+                //     background-color: #ff6b51;
+                // }
+                // &.winter {
+                //     background-color: #52198b;
+                // }
 
             }
         }

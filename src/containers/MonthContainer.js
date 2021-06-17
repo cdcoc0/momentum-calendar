@@ -9,21 +9,13 @@ const MonthContainer = ({year, month, increaseMonth, decreaseMonth}) => {
     );
 };
 
-const mapStateToProps = state => ({
-    year: state.dateInfo.year,
-    month: state.dateInfo.month
-});
-
-const mapDispatchToProps = dispatch => ({
-    increaseMonth: () => {
-        dispatch(increaseMonth());
-    },
-    decreaseMonth: () => {
-        dispatch(decreaseMonth());
-    }
-});
-
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+    state => ({
+        year: state.dateInfo.year,
+        month: state.dateInfo.month
+    }),
+    {
+        increaseMonth,
+        decreaseMonth
+    }
 )(MonthContainer);

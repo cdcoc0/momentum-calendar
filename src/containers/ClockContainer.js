@@ -8,9 +8,8 @@ const ClockContainer = ({initializeDate}) => {
     );
 }
 
-const mapStateToProps = state => ({
-    initializeDate: state.dateInfo.initializeDate
-});
-
 export default connect(
-    mapStateToProps)(ClockContainer);
+    state => ({
+        initializeDate: state.dateInfo.initializeDate
+    })
+    )(ClockContainer);
