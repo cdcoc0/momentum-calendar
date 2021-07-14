@@ -1,6 +1,7 @@
+@import '../../lib/common/util.scss';
+
 .Dates {
     font-family: sans-serif;
-    //"Lucida Console", Helvetica, 
     display: flex;
     flex-wrap: wrap;
     margin-top: 1.5rem;
@@ -8,7 +9,7 @@
     overflow-y: hidden;
     .dateBlock {
         width: calc(100% / 7);
-        color: #b162ff;
+        color: $violet-dark;
         font-size: 1.25rem;
         font-weight: bold;
         &:nth-child(7n + 1) {
@@ -40,7 +41,7 @@
                 padding-left: 1rem;
                 font-family: 'Century Gothic', sans-serif;
                 font-size: 1rem;
-                background-color: #52198b;
+                background-color: $violet-darkest;
             }
         }
     }

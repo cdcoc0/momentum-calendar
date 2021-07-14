@@ -1,9 +1,5 @@
-$default-color: #c890ff;
-@mixin initialize() {
-    background: none;
-    outline: none;
-    border: none;
-}
+@import '../../lib/common/util.scss';
+
 .User {
     width: 950px;
     padding: 1rem;
@@ -11,7 +7,7 @@ $default-color: #c890ff;
     margin-left: auto;
     margin-right: auto;
     color: white;
-    font-family: "Lucida Console", Helvetica, sans-serif;
+    font-family: $init-font;
     font-size: 1.25rem;
     .user-form {
         display: flex;
@@ -33,9 +29,9 @@ $default-color: #c890ff;
             display: flex;
                 svg {
                 @include initialize();
-                border: 3px solid $default-color;
+                border: 3px solid $violet-default;
                 font-size: 1.5rem;
-                color: $default-color;
+                color: $violet-default;
                 padding: 0.25rem;
                 margin-left: 1.5rem;
                 border-radius: 4px;
@@ -43,7 +39,7 @@ $default-color: #c890ff;
                 transition: 0.1s background ease-in;
                     &:hover {
                         background: #f0e1ff8a;
-                        color: #be80fc;
+                        color: $violet-hover;
                     }
                 }
         }

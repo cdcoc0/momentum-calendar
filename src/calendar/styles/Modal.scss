@@ -1,9 +1,5 @@
-$default-color: #c890ff;
-@mixin initialize() {
-    background: none;
-    outline: none;
-    border: none;
-}
+@import '../../lib/common/util.scss';
+
 .Modal {
     display: none;
     position: fixed;
@@ -35,7 +31,7 @@ $default-color: #c890ff;
                 padding:0.5rem 0;
                 .dateinfo {
                     margin-top: 1rem;
-                    color: #52198b;
+                    color: $violet-darkest;
                     font-weight: bold;
                 }
             };
@@ -57,7 +53,7 @@ $default-color: #c890ff;
                 }
                 .insert-btn {
                     @include initialize();
-                    background-color: $default-color;
+                    background-color: $violet-default;
                     padding-right: 0.5rem;
                     padding-left: 0.5rem;
                     color: white;
@@ -65,7 +61,7 @@ $default-color: #c890ff;
                     font-size: 1.5rem;
                     cursor: pointer;
                     &:hover {
-                        background: #be80fc;
+                        background: $violet-hover;
                     }
                 }
 
@@ -82,14 +78,14 @@ $default-color: #c890ff;
             footer {
                 display: flex;
                 justify-content: center;
-                background-color: #c890ff;
+                background-color: $violet-default;
                 border-bottom-left-radius: 8px;
                 border-bottom-right-radius: 8px;
                 .close-btn {
                     @include initialize();
                     flex: 1;
                     padding: 0.75rem 0;
-                    background: #c890ff;
+                    background: $violet-default;
                     border-bottom-left-radius: 8px;
                     border-bottom-right-radius: 8px;
                     cursor: pointer;

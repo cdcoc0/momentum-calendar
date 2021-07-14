@@ -1,9 +1,10 @@
-$default-color: #c890ff;
+@import '../../lib/common/util.scss';
+
 .Calendar {
     z-index: 10;
     width: 100%;
     height: 100%;
-    font-family: "Lucida Console", Helvetica, sans-serif;
+    font-family: $init-font;
     position: absolute;
     overflow: auto;
     .navSpace {
@@ -11,7 +12,7 @@ $default-color: #c890ff;
         .nav {
             width: 90px;
             height: 90px;
-            background-color: $default-color;
+            background-color: $violet-default;
             display: flex;
             justify-content: center;
             margin-left: 3rem;
@@ -30,8 +31,7 @@ $default-color: #c890ff;
             }
             transition: 0.1s ease-in;
             &:hover {
-                background: #f6e58d;
-                color: #130f40;
+                @include hover();
             }
         }
         .body {
@@ -48,7 +48,7 @@ $default-color: #c890ff;
                 padding-bottom: 0.5rem;
                 font-size: 1.25rem;
                 font-weight: bold;
-                color: $default-color;
+                color: $violet-default;
                 .days {
                     width: calc(100% / 7);
                     &:nth-child(7n + 1) {

@@ -1,3 +1,4 @@
+@import '../../lib/common/util.scss';
 @mixin box() {
     display: flex;
     flex-direction: row-reverse;
@@ -6,7 +7,7 @@
 .Weather {
     margin-right: 3rem;
     color: white;
-    font-family: "Lucida Console", Helvetica, sans-serif;
+    font-family: $init-font;
     .location {
         @include box();
     }

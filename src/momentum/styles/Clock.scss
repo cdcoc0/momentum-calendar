@@ -1,9 +1,11 @@
+@import '../../lib/common/util.scss';
+
 .Clock {
     margin-right: 3rem;
     .momentum-datecontainer {
         display: flex;
         flex-direction: row-reverse;
-        font-family: "Lucida Console", Helvetica, sans-serif;
+        font-family: $init-font;
         color: white;
         font-size: 1.25rem;;
         margin-top: 3rem;

@@ -1,9 +1,5 @@
-$default-color: #c890ff;
-@mixin initialize() {
-    background: none;
-    outline: none;
-    border: none;
-}
+@import '../../lib/common/util.scss';
+
 .TodoInsert {
     display: flex;
     margin-bottom: 3rem;
@@ -21,7 +17,7 @@ $default-color: #c890ff;
     button {
         @include initialize();
         border-radius: 4px;
-        background: $default-color;
+        background: $violet-default;
         color: white;
         padding-right: 0.5rem;
         padding-left: 0.5rem;
@@ -33,7 +29,7 @@ $default-color: #c890ff;
         cursor: pointer;
         transition: 0.1s background ease-in;
         &:hover {
-            background: #be80fc;
+            background: $violet-hover;
         }
     }
 }

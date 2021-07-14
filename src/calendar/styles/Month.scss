@@ -1,8 +1,4 @@
-@mixin initialize() {
-    background: none;
-    outline: none;
-    border: none;
-}
+@import '../../lib/common/util.scss';
 
 .Header {
     margin-top: 1rem;
@@ -25,7 +21,7 @@
         align-items: center;
         cursor: pointer;
         &:hover {
-            color: #6b2fa8;
+            color: $violet-darkest;
         }
     }  
 }

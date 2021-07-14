@@ -1,0 +1,17 @@
+@mixin initialize() {
+    background: none;
+    outline: none;
+    border: none;
+}
+
+@mixin hover() {
+    background: #f6e58d;
+    color: #130f40;
+}
+
+$init-font: "Lucida Console", Helvetica, sans-serif;
+
+$violet-default: #c890ff;
+$violet-hover: #be80fc;
+$violet-dark: #b162ff;
+$violet-darkest: #52198b;
